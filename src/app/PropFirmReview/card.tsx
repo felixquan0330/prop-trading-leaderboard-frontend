@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Weekend, FireWall, Dollar } from '@/components/component/icons';
+import { Calendar, Weekend, FireWall, Dollar, ActiveRating, InactiveRating } from '@/components/component/icons';
 
 interface PropFirmCardProps {
     logoUrl?: string;
@@ -23,7 +23,7 @@ export const PropFirmCard: React.FC<PropFirmCardProps> = ({
     payouts,
 }) => {
     return (
-        <div className="bg-white rounded-2xl shadow p-6 flex flex-col gap-3 w-full border border-gray-200">
+        <div className="bg-white dark:bg-[#282828] rounded-2xl p-6 flex flex-col gap-3 w-full border border-gray-200 dark:border-[#3F3F3F]">
             <div className="flex justify-between">
                 <div className="flex items-center gap-2">
                     <img
@@ -32,16 +32,20 @@ export const PropFirmCard: React.FC<PropFirmCardProps> = ({
                         className="w-8 h-8 rounded object-cover border border-gray-200 bg-gray-100"
                     />
                     <div>
-                        <span className="font-bold text-lg text-[#16191d]">{name}</span>
+                        <span className="font-bold text-lg text-[#16191d] dark:text-white">{name}</span>
                         <div className="flex items-center gap-1">
                             {[...Array(Math.floor(rating))].map((_, i) => (
-                                <span key={i} className="text-[#FFD700] text-lg align-middle">★</span>
+                                <span key={i} className="text-[#FFD700] text-lg align-middle">
+                                    <ActiveRating />
+                                </span>
                             ))}
                             {[...Array(5 - Math.floor(rating))].map((_, i) => (
-                                <span key={i} className="text-[#E5E7EB] text-lg align-middle">★</span>
+                                <span key={i} className="text-[#E5E7EB] text-lg align-middle">
+                                    <InactiveRating />
+                                </span>
                             ))}
                         </div>
-                        <span className="text-[#7B849B] text-sm font-normal mt-1">
+                        <span className="text-[#7B849B] dark:text-white opacity-70 text-sm font-normal mt-1">
                             {rating} from {traders.toLocaleString()} traders
                         </span>
                     </div>
@@ -51,7 +55,7 @@ export const PropFirmCard: React.FC<PropFirmCardProps> = ({
                 </div>
             </div>
             <hr className="my-2 text-[#E2E5E9]" />
-            <div className="flex flex-col gap-2 text-sm text-[#434a56]">
+            <div className="flex flex-col gap-2 text-sm text-[#434a56] dark:text-white opacity-70">
                 <div className="flex items-center gap-2">
                     <FireWall />
                     <span>Max Drawdown: <span className="font-bold">{maxDrawdown}</span></span>

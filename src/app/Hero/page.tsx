@@ -1,17 +1,16 @@
 import React from 'react'
-import { Header, Button } from '@/components'
+import { Button } from '@/components'
 
 export default function Hero() {
     return (
         <div className="px-20 pb-16 h-screen">
-            <Header />
             <section className="flex items-center justify-center gap-20 text-center h-full">
                 <div className="flex flex-col items-center justify-center gap-10">
                     <div className="flex flex-col gap-6">
-                        <div className="text-[40px] text-[#16191d] font-semibold">
+                        <div className="text-[40px] text-[#16191d] dark:text-white font-semibold">
                             The Ultimate Leaderboard for Prop Traders
                         </div>
-                        <div className="text-[#434a56] text-[22px] font-semibold tracking-wide">
+                        <div className="text-[#434a56] dark:text-white text-[22px] font-semibold tracking-wide opacity-70">
                             Track performance across top firms. Live rankings, win rates, badges and more.
                         </div>
                     </div>
