@@ -1,4 +1,5 @@
 import React from 'react';
+import { US, SA, GB, FR } from 'country-flag-icons/react/3x2'
 
 interface GOATClubCardProps {
     avatarUrl?: string;
@@ -26,7 +27,15 @@ export const GOATClubCard: React.FC<GOATClubCardProps> = ({
                         alt={username}
                         className="w-10 h-10 rounded-full object-cover border border-gray-200 bg-gray-100"
                     />
-                    <span className="text-lg text-[#16191d] dark:text-white flex items-center gap-1">{country} {username}</span>
+                    <div className="flex items-center gap-1">
+                        {country === "USA" && <US title="United States" className="w-4 h-4" />}
+                        {country === "FRA" && <FR title="France" className="w-4 h-4" />}
+                        {country === "UK" && <GB title="United Kingdom" className="w-4 h-4" />}
+                        {country === "SA" && <SA title="Saudi Arabia" className="w-4 h-4" />}
+                        <span className="text-lg text-[#16191d] dark:text-white flex items-center gap-1">
+                            {country} {username}
+                        </span>
+                    </div>
                 </div>
                 <img src="/images/placeholder.png" alt="profile-bg" className="w-5 h-5 opacity-40" />
             </div>

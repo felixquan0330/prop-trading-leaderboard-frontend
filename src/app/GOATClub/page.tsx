@@ -33,7 +33,7 @@ export default function GOATClub() {
                                 <GOATClubCard
                                     avatarUrl="/user-default.png"
                                     username="PipHunterX"
-                                    country="🇺🇸"
+                                    country="USA"
                                     firm="Alpha Prop Firm"
                                     payout="$186,000 paid out"
                                     quote="One trade at a time."
@@ -43,7 +43,7 @@ export default function GOATClub() {
                                 <GOATClubCard
                                     avatarUrl="/user-default.png"
                                     username="DuneTrader"
-                                    country="🇸🇦"
+                                    country="SA"
                                     firm="DesertEdge"
                                     payout="$145,700 paid out"
                                     quote="Patience pays."
@@ -53,7 +53,7 @@ export default function GOATClub() {
                                 <GOATClubCard
                                     avatarUrl="/user-default.png"
                                     username="SniperWolfFX"
-                                    country="🇬🇧"
+                                    country="UK"
                                     firm="Titan Trades"
                                     payout="$142,500 paid out"
                                     quote="Precision is everything."
@@ -63,7 +63,7 @@ export default function GOATClub() {
                                 <GOATClubCard
                                     avatarUrl="/user-default.png"
                                     username="ChartSurfer"
-                                    country="🇫🇷"
+                                    country="FRA"
                                     firm="PropElite"
                                     payout="$131,300 paid out"
                                     quote="Ride the wave."
