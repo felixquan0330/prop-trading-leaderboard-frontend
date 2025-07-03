@@ -12,7 +12,7 @@ export default function GOATClub() {
                 <div className="flex flex-col gap-8">
                     <div className="flex flex-col gap-3">
                         <h6 className="text-[#16191d] dark:text-white text-2xl font-bold text-center">GOAT Club</h6>
-                        <p className="text-[#434a56] dark:text-white opacity-70 text-center text-sm font-medium">
+                        <p className="text-[#434a56] dark:text-white dark:opacity-70 text-center text-sm font-medium">
                             Spotlighting the best traders with verified payouts over $100K
                         </p>
                     </div>

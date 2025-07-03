@@ -90,26 +90,26 @@ export default function Leaderboard() {
             <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-3">
                     <h6 className="text-[#16191d] dark:text-white text-2xl font-bold text-center">Global Leaderboard</h6>
-                    <p className="text-[#434a56] dark:text-white text-center text-sm font-medium opacity-70">
+                    <p className="text-[#434a56] dark:text-white text-center text-sm font-medium dark:opacity-70">
                         See how the world’s top traders stack up across all supported prop firms.
                     </p>
                 </div>
                 <div className="flex flex-col gap-6">
                     <div className="flex justify-between items-center">
                         <div className="flex gap-3">
-                            <Button variant="outline" className="text-[#434a56] dark:text-white opacity-70 bg-transparent rounded-full gap-1">
+                            <Button variant="outline" className="text-[#434a56] dark:text-white dark:opacity-70 bg-transparent rounded-full gap-1">
                                 <Filter className="w-4 h-4" />
                                 Filter
                             </Button>
                             <div className="h-10 w-px bg-[#CCD0D7]"></div>
-                            <Button variant="outline" className="text-[#434a56] dark:text-white opacity-70 bg-transparent rounded-full gap-1">
+                            <Button variant="outline" className="text-[#434a56] dark:text-white dark:opacity-70 bg-transparent rounded-full gap-1">
                                 <Popular className="w-4 h-4" />
                                 Popular
                             </Button>
-                            <Button variant="outline" className="text-[#434a56] dark:text-white opacity-70 bg-transparent rounded-full gap-1">
+                            <Button variant="outline" className="text-[#434a56] dark:text-white dark:opacity-70 bg-transparent rounded-full gap-1">
                                 <Favourite className="w-4 h-4" />Favourites
                             </Button>
-                            <Button variant="outline" className="text-[#434a56] dark:text-white opacity-70 bg-transparent rounded-full gap-1">
+                            <Button variant="outline" className="text-[#434a56] dark:text-white dark:opacity-70 bg-transparent rounded-full gap-1">
                                 <New className="w-4 h-4" />
                                 New
                             </Button>
@@ -117,7 +117,7 @@ export default function Leaderboard() {
                         <div>
                             <Switch>
                                 <Button
-                                    className={`${selected === 'global' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white opacity-70'}`}
+                                    className={`${selected === 'global' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white dark:opacity-70'}`}
                                     onClick={() => handleSwitch('global')}
                                     variant="switch"
                                 >
@@ -125,7 +125,7 @@ export default function Leaderboard() {
                                     Global
                                 </Button>
                                 <Button
-                                    className={`${selected === 'goat' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white opacity-70'}`}
+                                    className={`${selected === 'goat' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white dark:opacity-70'}`}
                                     onClick={() => handleSwitch('goat')}
                                     variant="switch"
                                 >
@@ -167,10 +167,10 @@ export default function Leaderboard() {
                                             {trader.country === "ITA" && <IT title="Italy" className="w-4 h-4" />}
                                             {trader.country === "IND" && <IN title="India" className="w-4 h-4" />}
                                             {trader.country === "NZ" && <NZ title="New Zealand" className="w-4 h-4" />}
-                                            <span className="text-[#434A56] dark:text-white opacity-70">{trader.country}</span>
+                                            <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
                                         </div>
                                     </Td>
-                                    <Td><span className="text-[#434A56] dark:text-white opacity-70">{trader.firm}</span></Td>
+                                    <Td><span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.firm}</span></Td>
                                     <Td>
                                         <div className="bg-[#F6F7F8] dark:bg-[#121212] border border-[#E2E5E9] dark:border-[#3F3F3F] rounded-md p-1">{trader.pnl}</div>
                                     </Td>

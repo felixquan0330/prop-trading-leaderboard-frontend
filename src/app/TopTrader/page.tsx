@@ -122,7 +122,7 @@ export default function TopTrader() {
             <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-3">
                     <h6 className="text-[#16191d] dark:text-white text-2xl font-bold text-center">Top Traders by Firm</h6>
-                    <p className="text-[#434a56] dark:text-white opacity-70 text-center text-sm font-medium">
+                    <p className="text-[#434a56] dark:text-white dark:opacity-70 text-center text-sm font-medium">
                         See who’s leading the pack at each prop firm this week.
                     </p>
                 </div>
@@ -131,7 +131,7 @@ export default function TopTrader() {
                         <div>
                             <Switch>
                                 <Button
-                                    className={`${selected === 'global' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white opacity-70'}`}
+                                    className={`${selected === 'global' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white dark:opacity-70'}`}
                                     onClick={() => handleSwitch('global')}
                                     variant="switch"
                                 >
@@ -139,7 +139,7 @@ export default function TopTrader() {
                                     List
                                 </Button>
                                 <Button
-                                    className={`${selected === 'goat' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white opacity-70'}`}
+                                    className={`${selected === 'goat' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white dark:opacity-70'}`}
                                     onClick={() => handleSwitch('goat')}
                                     variant="switch"
                                 >
@@ -189,7 +189,7 @@ export default function TopTrader() {
                                                         {trader.country === "USA" && <US title="United States" className="w-4 h-4" />}
                                                         {trader.country === "FRA" && <FR title="France" className="w-4 h-4" />}
                                                         {trader.country === "UK" && <GB title="United Kingdom" className="w-4 h-4" />}
-                                                        <span className="text-[#434A56] dark:text-white opacity-70">{trader.country}</span>
+                                                        <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
                                                     </div>
                                                 </Td>
                                                 <Td>
@@ -243,7 +243,7 @@ export default function TopTrader() {
                                                         {trader.country === "USA" && <US title="United States" className="w-4 h-4" />}
                                                         {trader.country === "FRA" && <FR title="France" className="w-4 h-4" />}
                                                         {trader.country === "UK" && <GB title="United Kingdom" className="w-4 h-4" />}
-                                                        <span className="text-[#434A56] dark:text-white opacity-70">{trader.country}</span>
+                                                        <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
                                                     </div>
                                                 </Td>
                                                 <Td>
@@ -297,7 +297,7 @@ export default function TopTrader() {
                                                         {trader.country === "USA" && <US title="United States" className="w-4 h-4" />}
                                                         {trader.country === "FRA" && <FR title="France" className="w-4 h-4" />}
                                                         {trader.country === "UK" && <GB title="United Kingdom" className="w-4 h-4" />}
-                                                        <span className="text-[#434A56] dark:text-white opacity-70">{trader.country}</span>
+                                                        <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
                                                     </div>
                                                 </Td>
                                                 <Td>
@@ -351,7 +351,7 @@ export default function TopTrader() {
                                                         {trader.country === "USA" && <US title="United States" className="w-4 h-4" />}
                                                         {trader.country === "FRA" && <FR title="France" className="w-4 h-4" />}
                                                         {trader.country === "UK" && <GB title="United Kingdom" className="w-4 h-4" />}
-                                                        <span className="text-[#434A56] dark:text-white opacity-70">{trader.country}</span>
+                                                        <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
                                                     </div>
                                                 </Td>
                                                 <Td>
@@ -405,7 +405,7 @@ export default function TopTrader() {
                                                         {trader.country === "USA" && <US title="United States" className="w-4 h-4" />}
                                                         {trader.country === "FRA" && <FR title="France" className="w-4 h-4" />}
                                                         {trader.country === "UK" && <GB title="United Kingdom" className="w-4 h-4" />}
-                                                        <span className="text-[#434A56] dark:text-white opacity-70">{trader.country}</span>
+                                                        <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
                                                     </div>
                                                 </Td>
                                                 <Td>

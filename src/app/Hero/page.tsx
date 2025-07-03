@@ -10,16 +10,16 @@ export default function Hero() {
                         <div className="text-[40px] text-[#16191d] dark:text-white font-semibold">
                             The Ultimate Leaderboard for Prop Traders
                         </div>
-                        <div className="text-[#434a56] dark:text-white text-[22px] font-semibold tracking-wide opacity-70">
+                        <div className="text-[#434a56] dark:text-white text-[22px] font-semibold tracking-wide dark:opacity-70">
                             Track performance across top firms. Live rankings, win rates, badges and more.
                         </div>
                     </div>
                     <div className="flex gap-4">
-                        <Button className="bg-white hover:bg-[#434a56] border-[#434A56] border-1 rounded-md">
-                            <span className="text-[#434A56] hover:text-white font-semibold">View Leaderboard</span>
+                        <Button className="bg-transparent hover:bg-[#434a56] border-[#434A56] border-1 rounded-md">
+                            <span className="text-[#434A56] dark:text-white dark:dark:opacity-70 hover:text-white text-base">View Leaderboard</span>
                         </Button>
-                        <Button className="bg-white hover:bg-[#434a56] border-[#434A56] border-1 rounded-md">
-                            <span className="text-[#434A56] hover:text-white font-semibold">GOAT Club</span>
+                        <Button className="bg-transparent hover:bg-[#434a56] border-[#434A56] border-1 rounded-md">
+                            <span className="text-[#434A56] dark:text-white dark:dark:opacity-70 hover:text-white text-base">GOAT Club</span> 
                         </Button>
                     </div>
                 </div>

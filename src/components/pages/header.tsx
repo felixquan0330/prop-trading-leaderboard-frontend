@@ -20,7 +20,7 @@ export const Header = () => {
                     </a>
                 </nav>
             </div>
-            <Button className="border-[#434a56] bg-[#F6F7F8] hover:bg-[#434a56] dark:bg-gray-700 dark:text-white dark:border-gray-400 dark:hover:bg-gray-600" variant="outline">
+            <Button className="border-[#434a56] bg-transparent hover:bg-[#434a56] dark:text-white dark:border-[#3F3F3F] dark:hover:bg-[#3F3F3F]" variant="outline">
                 Login
             </Button>
         </header>

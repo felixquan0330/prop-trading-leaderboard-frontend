@@ -30,11 +30,11 @@ export const GOATClubCard: React.FC<GOATClubCardProps> = ({
                 </div>
                 <img src="/images/placeholder.png" alt="profile-bg" className="w-5 h-5 opacity-40" />
             </div>
-            <div className="w-full text-left text-[#7B849B] dark:text-white opacity-70 text-sm font-medium mb-2 pl-12">{firm}</div>
+            <div className="w-full text-left text-[#7B849B] dark:text-white dark:opacity-70 text-sm font-medium mb-2 pl-12">{firm}</div>
             <hr className="my-2 w-full text-[#E2E5E9]" />
             <div className="w-full flex flex-col items-center gap-1 mb-2">
                 <span className="text-md font-bold text-[#16191d] dark:text-white">{payout}</span>
-                <span className="italic text-[#7B849B] dark:text-white opacity-70 text-sm">“{quote}”</span>
+                <span className="italic text-[#7B849B] dark:text-white dark:opacity-70 text-sm">“{quote}”</span>
             </div>
             <button className="mt-3 px-5 py-2 rounded-md border border-gray-300 bg-white dark:bg-[#282828] text-[#16191d] dark:text-white hover:bg-gray-50 dark:hover:bg-[#3F3F3F] dark:hover:text-white dark:border-[#3F3F3F] transition text-sm">
                 View Profile

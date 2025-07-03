@@ -45,7 +45,7 @@ export const PropFirmCard: React.FC<PropFirmCardProps> = ({
                                 </span>
                             ))}
                         </div>
-                        <span className="text-[#7B849B] dark:text-white opacity-70 text-sm font-normal mt-1">
+                        <span className="text-[#7B849B] dark:text-white dark:opacity-70 text-sm font-normal mt-1">
                             {rating} from {traders.toLocaleString()} traders
                         </span>
                     </div>
@@ -55,7 +55,7 @@ export const PropFirmCard: React.FC<PropFirmCardProps> = ({
                 </div>
             </div>
             <hr className="my-2 text-[#E2E5E9]" />
-            <div className="flex flex-col gap-2 text-sm text-[#434a56] dark:text-white opacity-70">
+            <div className="flex flex-col gap-2 text-sm text-[#434a56] dark:text-white dark:opacity-70">
                 <div className="flex items-center gap-2">
                     <FireWall />
                     <span>Max Drawdown: <span className="font-bold">{maxDrawdown}</span></span>
