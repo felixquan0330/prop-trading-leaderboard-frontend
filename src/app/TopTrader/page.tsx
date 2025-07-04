@@ -1,75 +1,18 @@
 "use client"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button, Switch, Badge } from '@/components'
 import { List, Grid, Discount, Check } from '@/components'
 import { Table, TableHeader, TableBody, TableRow, Th, Td } from '@/components'
-import { US, FR, GB } from 'country-flag-icons/react/3x2'
+import { getCountryFlag } from '@/utils/countryFlags'
 
 export default function TopTrader() {
 
     const [selected, setSelected] = useState<'global' | 'goat'>('global')
-    const FTMOTraders = [
-        {
-            username: "PipHunterX",
-            country: "USA",
-            pnl: "+$52,340",
-            badges: ["🔥 Profit Streak", "🏆 Top Gun"],
-        },
-        {
-            username: "SniperWolfFX",
-            country: "UK",
-            pnl: "+$48,900",
-            badges: ["🎯 Sniper Entry", "🔥 Profit Streak"],
-        },
-        {
-            username: "ChartSurfer",
-            country: "FRA",
-            pnl: "+$45,120",
-            badges: ["🔥 Profit Streak", "📝 Consistency King"],
-        },
-    ];
-
-    const myFundedFXTraders = [
-        {
-            username: "PipHunterX",
-            country: "USA",
-            pnl: "+$52,340",
-            badges: ["🔥 Profit Streak", "🏆 Top Gun"],
-        },
-        {
-            username: "SniperWolfFX",
-            country: "UK",
-            pnl: "+$48,900",
-            badges: ["🎯 Sniper Entry", "🔥 Profit Streak"],
-        },
-        {
-            username: "ChartSurfer",
-            country: "FRA",
-            pnl: "+$45,120",
-            badges: ["🔥 Profit Streak", "📝 Consistency King"],
-        },
-    ];
-
-    const e8FundingTraders = [
-        {
-            username: "PipHunterX",
-            country: "USA",
-            pnl: "+$52,340",
-            badges: ["🔥 Profit Streak", "🏆 Top Gun"],
-        },
-        {
-            username: "SniperWolfFX",
-            country: "UK",
-            pnl: "+$48,900",
-            badges: ["🎯 Sniper Entry", "🔥 Profit Streak"],
-        },
-        {
-            username: "ChartSurfer",
-            country: "FRA",
-            pnl: "+$45,120",
-            badges: ["🔥 Profit Streak", "📝 Consistency King"],
-        },
-    ];
+    const [ftmoData, setFtmoData] = useState<any>(null)
+    const [fundedxData, setFundedxData] = useState<any>(null)
+    const [fundingPipsData, setFundingPipsData] = useState<any>(null)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
 
     const apexOneTraders = [
         {
@@ -112,6 +55,42 @@ export default function TopTrader() {
             badges: ["🔥 Profit Streak", "📝 Consistency King"],
         },
     ];
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(true)
+                
+                // Fetch FTMO data
+                const ftmoResponse = await fetch('/api/FTMO/')
+                if (ftmoResponse.ok) {
+                    const ftmoData = await ftmoResponse.json()
+                    setFtmoData(ftmoData)
+                }
+                
+                // Fetch FundedX data
+                const fundedxResponse = await fetch('/api/MyFundedFX/')
+                if (fundedxResponse.ok) {
+                    const fundedxData = await fundedxResponse.json()
+                    setFundedxData(fundedxData)
+                }
+                
+                // Fetch FundingPips data
+                const fundingPipsResponse = await fetch('/api/FundingPips/')
+                if (fundingPipsResponse.ok) {
+                    const fundingPipsData = await fundingPipsResponse.json()
+                    setFundingPipsData(fundingPipsData)
+                }
+                
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'An error occurred')
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchData()
+    }, [])
 
     const handleSwitch = (value: 'global' | 'goat') => {
         setSelected(value)
@@ -174,36 +153,52 @@ export default function TopTrader() {
                                         <Th>BADGES</Th>
                                     </TableHeader>
                                     <TableBody>
-                                        {FTMOTraders.map((trader, index) => (
-                                            <TableRow key={index}>
-                                                <Td>{index + 1}</Td>
-                                                <Td>
-                                                    <div className="flex items-center gap-2">
-                                                        <img src="/user-default.png" alt="top-trader" className='w-6 h-6 rounded-full' />
-                                                        <span className="font-semibold">{trader.username}</span>
-                                                        {index === 0 && <Check className="w-4 h-4" />}
-                                                    </div>
-                                                </Td>
-                                                <Td>
-                                                    <div className="flex items-center gap-2">
-                                                        {trader.country === "USA" && <US title="United States" className="w-4 h-4" />}
-                                                        {trader.country === "FRA" && <FR title="France" className="w-4 h-4" />}
-                                                        {trader.country === "UK" && <GB title="United Kingdom" className="w-4 h-4" />}
-                                                        <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
-                                                    </div>
-                                                </Td>
-                                                <Td>
-                                                    <div className="bg-[#F6F7F8] dark:bg-[#3F3F3F] border border-[#E2E5E9] dark:border-[#3F3F3F] rounded-md p-1">{trader.pnl}</div>
-                                                </Td>
-                                                <Td>
-                                                    <div className="flex flex-wrap gap-2 justify-center">
-                                                        {trader.badges.map((badge, i) => (
-                                                            <Badge key={i}>{badge}</Badge>
-                                                        ))}
+                                        {loading ? (
+                                            <TableRow>
+                                                <Td className="text-center py-8">
+                                                    <div className="flex items-center justify-center">
+                                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                                                        <span className="ml-2">Loading FTMO data...</span>
                                                     </div>
                                                 </Td>
                                             </TableRow>
-                                        ))}
+                                        ) : error ? (
+                                            <TableRow>
+                                                <Td className="text-center py-8 text-red-500">
+                                                    Error: {error}
+                                                </Td>
+                                            </TableRow>
+                                        ) : ftmoData?.global?.map((trader: any, index: number) => {
+                                            const FlagComponent = getCountryFlag(trader.countryCode)
+                                            return (
+                                                <TableRow key={index}>
+                                                    <Td>{trader.rank}</Td>
+                                                    <Td>
+                                                        <div className="flex items-center gap-2">
+                                                            <img src="/user-default.png" alt="top-trader" className='w-6 h-6 rounded-full' />
+                                                            <span className="font-semibold">{trader.username}</span>
+                                                            {trader.verified && <Check className="w-4 h-4" />}
+                                                        </div>
+                                                    </Td>
+                                                    <Td>
+                                                        <div className="flex items-center gap-2">
+                                                            {FlagComponent && <FlagComponent title={trader.country} className="w-4 h-4" />}
+                                                            <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
+                                                        </div>
+                                                    </Td>
+                                                    <Td>
+                                                        <div className="bg-[#F6F7F8] dark:bg-[#3F3F3F] border border-[#E2E5E9] dark:border-[#3F3F3F] rounded-md p-1">{trader.pnl}</div>
+                                                    </Td>
+                                                    <Td>
+                                                        <div className="flex flex-wrap gap-2 justify-center">
+                                                            {trader.badges.map((badge: string, i: number) => (
+                                                                <Badge key={i}>{badge}</Badge>
+                                                            ))}
+                                                        </div>
+                                                    </Td>
+                                                </TableRow>
+                                            )
+                                        })}
                                     </TableBody>
                                 </Table>
                             </div>
@@ -212,7 +207,7 @@ export default function TopTrader() {
                             <div className='flex justify-between items-center'>
                                 <div className='flex items-center gap-2'>
                                     <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
-                                    <span className='text-[#16191d] dark:text-white font-semibold'>MyFundedFX</span>
+                                    <span className='text-[#16191d] dark:text-white font-semibold'>FundedX</span>
                                 </div>
                                 <div>
                                     <span className='text-[#434a56] dark:text-white text-sm font-semibold'>View Full Leaderboard</span>
@@ -228,36 +223,52 @@ export default function TopTrader() {
                                         <Th>BADGES</Th>
                                     </TableHeader>
                                     <TableBody>
-                                        {myFundedFXTraders.map((trader, index) => (
-                                            <TableRow key={index}>
-                                                <Td>{index + 1}</Td>
-                                                <Td>
-                                                    <div className="flex items-center gap-2">
-                                                        <img src="/user-default.png" alt="top-trader" className='w-6 h-6 rounded-full' />
-                                                        <span className="font-semibold">{trader.username}</span>
-                                                        {index === 0 && <Check className="w-4 h-4" />}
-                                                    </div>
-                                                </Td>
-                                                <Td>
-                                                    <div className="flex items-center gap-2">
-                                                        {trader.country === "USA" && <US title="United States" className="w-4 h-4" />}
-                                                        {trader.country === "FRA" && <FR title="France" className="w-4 h-4" />}
-                                                        {trader.country === "UK" && <GB title="United Kingdom" className="w-4 h-4" />}
-                                                        <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
-                                                    </div>
-                                                </Td>
-                                                <Td>
-                                                    <div className="bg-[#F6F7F8] dark:bg-[#3F3F3F] border border-[#E2E5E9] dark:border-[#3F3F3F] rounded-md p-1">{trader.pnl}</div>
-                                                </Td>
-                                                <Td>
-                                                    <div className="flex flex-wrap gap-2 justify-center">
-                                                        {trader.badges.map((badge, i) => (
-                                                            <Badge key={i}>{badge}</Badge>
-                                                        ))}
+                                        {loading ? (
+                                            <TableRow>
+                                                <Td className="text-center py-8">
+                                                    <div className="flex items-center justify-center">
+                                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                                                        <span className="ml-2">Loading FundedX data...</span>
                                                     </div>
                                                 </Td>
                                             </TableRow>
-                                        ))}
+                                        ) : error ? (
+                                            <TableRow>
+                                                <Td className="text-center py-8 text-red-500">
+                                                    Error: {error}
+                                                </Td>
+                                            </TableRow>
+                                        ) : fundedxData?.global?.map((trader: any, index: number) => {
+                                            const FlagComponent = getCountryFlag(trader.countryCode)
+                                            return (
+                                                <TableRow key={index}>
+                                                    <Td>{trader.rank}</Td>
+                                                    <Td>
+                                                        <div className="flex items-center gap-2">
+                                                            <img src="/user-default.png" alt="top-trader" className='w-6 h-6 rounded-full' />
+                                                            <span className="font-semibold">{trader.username}</span>
+                                                            {trader.verified && <Check className="w-4 h-4" />}
+                                                        </div>
+                                                    </Td>
+                                                    <Td>
+                                                        <div className="flex items-center gap-2">
+                                                            {FlagComponent && <FlagComponent title={trader.country} className="w-4 h-4" />}
+                                                            <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
+                                                        </div>
+                                                    </Td>
+                                                    <Td>
+                                                        <div className="bg-[#F6F7F8] dark:bg-[#3F3F3F] border border-[#E2E5E9] dark:border-[#3F3F3F] rounded-md p-1">{trader.pnl}</div>
+                                                    </Td>
+                                                    <Td>
+                                                        <div className="flex flex-wrap gap-2 justify-center">
+                                                            {trader.badges.map((badge: string, i: number) => (
+                                                                <Badge key={i}>{badge}</Badge>
+                                                            ))}
+                                                        </div>
+                                                    </Td>
+                                                </TableRow>
+                                            )
+                                        })}
                                     </TableBody>
                                 </Table>
                             </div>
@@ -266,7 +277,7 @@ export default function TopTrader() {
                             <div className='flex justify-between items-center'>
                                 <div className='flex items-center gap-2'>
                                     <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
-                                    <span className='text-[#16191d] dark:text-white font-semibold'>E8 Funding</span>
+                                    <span className='text-[#16191d] dark:text-white font-semibold'>FundingPips</span>
                                 </div>
                                 <div>
                                     <span className='text-[#434a56] dark:text-white text-sm font-semibold'>View Full Leaderboard</span>
@@ -282,36 +293,52 @@ export default function TopTrader() {
                                         <Th>BADGES</Th>
                                     </TableHeader>
                                     <TableBody>
-                                        {e8FundingTraders.map((trader, index) => (
-                                            <TableRow key={index}>
-                                                <Td>{index + 1}</Td>
-                                                <Td>
-                                                    <div className="flex items-center gap-2">
-                                                        <img src="/user-default.png" alt="top-trader" className='w-6 h-6 rounded-full' />
-                                                        <span className="font-semibold">{trader.username}</span>
-                                                        {index === 0 && <Check className="w-4 h-4" />}
-                                                    </div>
-                                                </Td>
-                                                <Td>
-                                                    <div className="flex items-center gap-2">
-                                                        {trader.country === "USA" && <US title="United States" className="w-4 h-4" />}
-                                                        {trader.country === "FRA" && <FR title="France" className="w-4 h-4" />}
-                                                        {trader.country === "UK" && <GB title="United Kingdom" className="w-4 h-4" />}
-                                                        <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
-                                                    </div>
-                                                </Td>
-                                                <Td>
-                                                    <div className="bg-[#F6F7F8] dark:bg-[#3F3F3F] border border-[#E2E5E9] dark:border-[#3F3F3F] rounded-md p-1">{trader.pnl}</div>
-                                                </Td>
-                                                <Td>
-                                                    <div className="flex flex-wrap gap-2 justify-center">
-                                                        {trader.badges.map((badge, i) => (
-                                                            <Badge key={i}>{badge}</Badge>
-                                                        ))}
+                                        {loading ? (
+                                            <TableRow>
+                                                <Td className="text-center py-8">
+                                                    <div className="flex items-center justify-center">
+                                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                                                        <span className="ml-2">Loading FundingPips data...</span>
                                                     </div>
                                                 </Td>
                                             </TableRow>
-                                        ))}
+                                        ) : error ? (
+                                            <TableRow>
+                                                <Td className="text-center py-8 text-red-500">
+                                                    Error: {error}
+                                                </Td>
+                                            </TableRow>
+                                        ) : fundingPipsData?.bestTrades?.map((trader: any, index: number) => {
+                                            const FlagComponent = getCountryFlag(trader.countryCode)
+                                            return (
+                                                <TableRow key={index}>
+                                                    <Td>{trader.rank}</Td>
+                                                    <Td>
+                                                        <div className="flex items-center gap-2">
+                                                            <img src="/user-default.png" alt="top-trader" className='w-6 h-6 rounded-full' />
+                                                            <span className="font-semibold">{trader.username}</span>
+                                                            {trader.verified && <Check className="w-4 h-4" />}
+                                                        </div>
+                                                    </Td>
+                                                    <Td>
+                                                        <div className="flex items-center gap-2">
+                                                            {FlagComponent && <FlagComponent title={trader.country} className="w-4 h-4" />}
+                                                            <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
+                                                        </div>
+                                                    </Td>
+                                                    <Td>
+                                                        <div className="bg-[#F6F7F8] dark:bg-[#3F3F3F] border border-[#E2E5E9] dark:border-[#3F3F3F] rounded-md p-1">{trader.pnl}</div>
+                                                    </Td>
+                                                    <Td>
+                                                        <div className="flex flex-wrap gap-2 justify-center">
+                                                            {trader.badges.map((badge: string, i: number) => (
+                                                                <Badge key={i}>{badge}</Badge>
+                                                            ))}
+                                                        </div>
+                                                    </Td>
+                                                </TableRow>
+                                            )
+                                        })}
                                     </TableBody>
                                 </Table>
                             </div>
@@ -348,9 +375,10 @@ export default function TopTrader() {
                                                 </Td>
                                                 <Td>
                                                     <div className="flex items-center gap-2">
-                                                        {trader.country === "USA" && <US title="United States" className="w-4 h-4" />}
-                                                        {trader.country === "FRA" && <FR title="France" className="w-4 h-4" />}
-                                                        {trader.country === "UK" && <GB title="United Kingdom" className="w-4 h-4" />}
+                                                        {(() => {
+                                                            const FlagComponent = getCountryFlag(trader.country)
+                                                            return FlagComponent ? <FlagComponent title={trader.country} className="w-4 h-4" /> : null
+                                                        })()}
                                                         <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
                                                     </div>
                                                 </Td>
@@ -402,9 +430,10 @@ export default function TopTrader() {
                                                 </Td>
                                                 <Td>
                                                     <div className="flex items-center gap-2">
-                                                        {trader.country === "USA" && <US title="United States" className="w-4 h-4" />}
-                                                        {trader.country === "FRA" && <FR title="France" className="w-4 h-4" />}
-                                                        {trader.country === "UK" && <GB title="United Kingdom" className="w-4 h-4" />}
+                                                        {(() => {
+                                                            const FlagComponent = getCountryFlag(trader.country)
+                                                            return FlagComponent ? <FlagComponent title={trader.country} className="w-4 h-4" /> : null
+                                                        })()}
                                                         <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
                                                     </div>
                                                 </Td>
