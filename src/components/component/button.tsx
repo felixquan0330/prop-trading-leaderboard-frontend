@@ -2,7 +2,7 @@ import React from 'react'
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode
-    variant?: "default" | "outline" | "switch" | "icon"
+    variant?: "default" | "outline" | "switch" | "icon" | "brand"
     size?: "default" | "fit" | "sm"
     className?: string
 }
@@ -14,7 +14,7 @@ export const Button = ({ children, variant = "default", size = "default", classN
         default: "text-white hover:bg-[#434a56]",
         outline: "border border-[#e2e5e9] bg-transparent hover:bg-[#f6f7f8]",
         switch: "rounded-full text-[#434A56] gap-2",
-        icon: "rounded-full text-[#434A56] gap-2"
+        icon: "rounded-full text-[#434A56] gap-2",
     }
     
     const sizes: Record<string, string> = {

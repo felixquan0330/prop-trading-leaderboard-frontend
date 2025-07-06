@@ -75,7 +75,10 @@ export default function GOATClub() {
                 </div>
             </div>
             <div className="flex justify-center">
-                <Button variant="outline" className="text-[#434a56] dark:text-white bg-transparent rounded-sm border dark:border-[#3F3F3F]">
+                <Button
+                    variant="outline"
+                    className="text-[#434a56] dark:text-white bg-transparent rounded-sm border dark:border-[#3F3F3F]
+                                dark:text-white dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4] dark:border-none dark:hover:opacity-90">
                     See All
                 </Button>
             </div>

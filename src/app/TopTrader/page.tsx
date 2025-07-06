@@ -187,7 +187,7 @@ export default function TopTrader() {
                                                         </div>
                                                     </Td>
                                                     <Td>
-                                                        <div className="bg-[#F6F7F8] dark:bg-[#3F3F3F] border border-[#E2E5E9] dark:border-[#3F3F3F] rounded-md p-1">{trader.pnl}</div>
+                                                        <div className="bg-[#F6F7F8] dark:bg-[#275130] border border-[#E2E5E9] dark:border-none rounded-md p-1">{trader.pnl}</div>
                                                     </Td>
                                                     <Td>
                                                         <div className="flex flex-wrap gap-2 justify-center">
@@ -257,7 +257,7 @@ export default function TopTrader() {
                                                         </div>
                                                     </Td>
                                                     <Td>
-                                                        <div className="bg-[#F6F7F8] dark:bg-[#3F3F3F] border border-[#E2E5E9] dark:border-[#3F3F3F] rounded-md p-1">{trader.pnl}</div>
+                                                        <div className="bg-[#F6F7F8] dark:bg-[#275130] border border-[#E2E5E9] dark:border-none rounded-md p-1">{trader.pnl}</div>
                                                     </Td>
                                                     <Td>
                                                         <div className="flex flex-wrap gap-2 justify-center">
@@ -327,7 +327,7 @@ export default function TopTrader() {
                                                         </div>
                                                     </Td>
                                                     <Td>
-                                                        <div className="bg-[#F6F7F8] dark:bg-[#3F3F3F] border border-[#E2E5E9] dark:border-[#3F3F3F] rounded-md p-1">{trader.pnl}</div>
+                                                        <div className="bg-[#F6F7F8] dark:bg-[#275130] border border-[#E2E5E9] dark:border-none rounded-md p-1">{trader.pnl}</div>
                                                     </Td>
                                                     <Td>
                                                         <div className="flex flex-wrap gap-2 justify-center">
@@ -383,7 +383,7 @@ export default function TopTrader() {
                                                     </div>
                                                 </Td>
                                                 <Td>
-                                                    <div className="bg-[#F6F7F8] dark:bg-[#3F3F3F] border border-[#E2E5E9] dark:border-[#3F3F3F] rounded-md p-1">{trader.pnl}</div>
+                                                    <div className="bg-[#F6F7F8] dark:bg-[#275130] border border-[#E2E5E9] dark:border-none rounded-md p-1">{trader.pnl}</div>
                                                 </Td>
                                                 <Td>
                                                     <div className="flex flex-wrap gap-2 justify-center">
@@ -438,7 +438,7 @@ export default function TopTrader() {
                                                     </div>
                                                 </Td>
                                                 <Td>
-                                                    <div className="bg-[#F6F7F8] dark:bg-[#3F3F3F] border border-[#E2E5E9] dark:border-[#3F3F3F] rounded-md p-1">{trader.pnl}</div>
+                                                    <div className="bg-[#F6F7F8] dark:bg-[#275130] border border-[#E2E5E9] dark:border-none rounded-md p-1">{trader.pnl}</div>
                                                 </Td>
                                                 <Td>
                                                     <div className="flex flex-wrap gap-2 justify-center">

@@ -89,7 +89,7 @@ export default function Leaderboard() {
         <div className="px-20 pt-24 pb-16 flex flex-col gap-6">
             <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-3">
-                    <h6 className="text-[#16191d] dark:text-white text-2xl font-bold text-center">Global Leaderboard</h6>
+                    <h6 className="text-[#16191d] dark:text-white text-2xl font-bold text-center">Live Global Leaderboard</h6>
                     <p className="text-[#434a56] dark:text-white text-center text-sm font-medium dark:opacity-70">
                         See how the world’s top traders stack up across all supported prop firms.
                     </p>
@@ -172,7 +172,7 @@ export default function Leaderboard() {
                                     </Td>
                                     <Td><span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.firm}</span></Td>
                                     <Td>
-                                        <div className="bg-[#F6F7F8] dark:bg-[#121212] border border-[#E2E5E9] dark:border-[#3F3F3F] rounded-md p-1">{trader.pnl}</div>
+                                        <div className="bg-[#F6F7F8] dark:bg-[#275130] border border-[#E2E5E9] dark:border-none rounded-md p-1">{trader.pnl}</div>
                                     </Td>
                                     <Td>
                                         <div className="flex flex-wrap gap-2 justify-center">

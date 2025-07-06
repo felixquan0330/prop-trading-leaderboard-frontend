@@ -18,7 +18,8 @@ export default function StayConnected() {
                     />
                     <button
                         type="submit"
-                        className="bg-[#e9ebee] dark:bg-[#3F3F3F] text-[#434a56] dark:text-white rounded-full px-7 py-2 ml-2 transition hover:bg-[#e0e3e7] dark:hover:bg-[#3F3F3F]"
+                        className="bg-[#e9ebee] dark:bg-[#3F3F3F] text-[#434a56] dark:text-white rounded-full px-7 py-2 ml-2 transition hover:bg-[#e0e3e7] dark:hover:bg-[#3F3F3F]
+                                    dark:text-white dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4] dark:border-none dark:hover:opacity-90"
                     >
                         Subscribe
                     </button>
