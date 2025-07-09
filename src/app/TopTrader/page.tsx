@@ -97,7 +97,7 @@ export default function TopTrader() {
     }
 
     return (
-        <div className="px-20 pt-24 pb-16 flex flex-col gap-6">
+        <div className="max-w-[1440px] w-full mx-auto px-20 pt-24 pb-16 flex flex-col gap-6">
             <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-3">
                     <h6 className="text-[#16191d] dark:text-white text-2xl font-bold text-center">Top Traders by Firm</h6>

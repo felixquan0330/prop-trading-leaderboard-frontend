@@ -2,7 +2,7 @@ export const Footer = () => {
     return (
         <div>
             {/* Footer */}
-            <footer className="py-8 px-4 border-t border-[#e2e5e9]">
+            <footer className="max-w-[1440px] w-full mx-auto py-8 px-4 border-t border-[#e2e5e9]">
                 <div className="max-w-7xl mx-auto flex justify-between items-center text-sm">
                     <div className="flex gap-8">
                         <span>All rights reserved</span>

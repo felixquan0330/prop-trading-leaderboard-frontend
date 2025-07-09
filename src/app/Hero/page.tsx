@@ -1,10 +1,15 @@
 import React from 'react'
-import { Badge, Button } from '@/components'
+import { Badge, Button, Header } from '@/components'
 
 export default function Hero() {
     return (
-        <div className="px-20 pb-16 h-screen">
-            <section className="flex flex-col items-center justify-center gap-20 text-center h-full">
+        <div className="px-20 pb-16 h-screen relative overflow-hidden">
+            <Header />
+            {/* Left Blur */}
+            <div className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-[#98E9FB] opacity-60 blur-[250px] z-0" />
+            {/* Right Blur */}
+            <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-[400px] h-[400px] bg-[#98E9FB] opacity-60 blur-[250px] z-0" />
+            <section className="flex flex-col items-center justify-center gap-20 text-center h-full relative z-10">
                 <div className="flex flex-col items-center justify-center gap-10">
                     <div className="flex flex-col gap-8">
                         <div className="text-[40px] text-[#16191d] dark:text-white font-semibold">

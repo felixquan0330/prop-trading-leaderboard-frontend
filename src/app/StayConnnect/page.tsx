@@ -1,6 +1,6 @@
 export default function StayConnected() {
     return (
-        <div className="px-20 pt-24 pb-16 flex flex-col gap-8 h-[400px] justify-center items-center">
+        <div className="max-w-[1440px] w-full mx-auto px-20 pt-24 pb-16 flex flex-col gap-8 h-[400px] justify-center items-center">
             <div className="flex flex-col gap-3">
                 <span className="text-[#16191d] dark:text-white dark:opacity-70 text-center text-sm">STAY CONNECTED</span>
                 <h1 className="text-[#16191d] dark:text-white text-center text-4xl font-bold">

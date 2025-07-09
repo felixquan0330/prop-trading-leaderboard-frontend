@@ -7,7 +7,7 @@ import { PaginationDots } from "@/components/component/paginationDots";
 export default function PropFirmReview() {
 
     return (
-        <div className="px-20 pt-24 pb-16 flex flex-col gap-8">
+        <div className="max-w-[1440px] w-full mx-auto px-20 pt-24 pb-16 flex flex-col gap-8">
             <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-8">
                     <div className="flex flex-col gap-3">
