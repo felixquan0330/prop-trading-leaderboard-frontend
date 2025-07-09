@@ -96,7 +96,7 @@ export default function Leaderboard() {
             <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-3">
                     <h6 className="text-[#16191d] dark:text-white text-2xl font-bold text-center">Live Global Leaderboard</h6>
-                    <p className="text-[#434a56] dark:text-white text-center text-sm font-medium dark:opacity-70">
+                    <p className="text-[#434a56] dark:text-white text-center text-md font-medium dark:opacity-70">
                         See how the world’s top traders stack up across all supported prop firms.
                     </p>
                 </div>
@@ -124,7 +124,7 @@ export default function Leaderboard() {
                                         `}
                                     >
                                         <div className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm ${isActive
-                                            ? 'dark:bg-[#404040] bg-[#E2E5E9] dark:text-white'
+                                            ? 'dark:bg-[#404040] bg-[#E2E5E9] dark:text-white font-semibold'
                                             : 'bg-white text-[#16191d] dark:bg-[#000000] border border-[#CCD0D7] dark:border-[#525252] dark:text-white'}
                                         `}>
                                             <Icon className="w-4 h-4" />
@@ -147,22 +147,40 @@ export default function Leaderboard() {
                         </div>
                         <div>
                             <Switch>
-                                <Button
-                                    className={`${selected === 'global' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white dark:opacity-70'}`}
-                                    onClick={() => handleSwitch('global')}
-                                    variant="switch"
+                                <button
+                                    onClick={() => {
+                                        handleSwitch('global')
+                                    }}
+                                    className={`inline-flex rounded-full p-[1px] transition-colors ${selected === 'global'
+                                        ? 'dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4] bg-[#CCD0D7]'
+                                        : 'dark:bg-transparent'}
+                                        `}
                                 >
-                                    <Global className="w-4 h-4" />
-                                    Global
-                                </Button>
-                                <Button
-                                    className={`${selected === 'goat' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white dark:opacity-70'}`}
-                                    onClick={() => handleSwitch('goat')}
-                                    variant="switch"
+                                    <div className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm ${selected === 'global'
+                                        ? 'dark:bg-[#404040] bg-[#E2E5E9] dark:text-white'
+                                        : 'bg-transparent text-[#16191d] border-none dark:text-white'}
+                                        `}>
+                                        <Global className="w-4 h-4" />
+                                        <span>Global</span>
+                                    </div>
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        handleSwitch('goat')
+                                    }}
+                                    className={`inline-flex rounded-full p-[1px] transition-colors ${selected === 'goat'
+                                        ? 'dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4] bg-[#CCD0D7]'
+                                        : 'dark:bg-transparent'}
+                                        `}
                                 >
-                                    <Crown className="w-4 h-4" />
-                                    GOAT Club
-                                </Button>
+                                    <div className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm ${selected === 'goat'
+                                        ? 'dark:bg-[#404040] bg-[#E2E5E9] dark:text-white'
+                                        : 'bg-transparent text-[#16191d] border-none dark:text-white'}
+                                        `}>
+                                        <Crown className="w-4 h-4" />
+                                        <span>GOAT Club</span>
+                                    </div>
+                                </button>
                             </Switch>
                         </div>
                     </div>

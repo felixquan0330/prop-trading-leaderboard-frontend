@@ -13,7 +13,6 @@ export const Button = ({ children, variant = "default", size = "default", classN
     const variants: Record<string, string> = {
         default: "text-white hover:bg-[#434a56] px-4 py-2",
         outline: "border border-[#e2e5e9] bg-transparent px-4 py-2",
-        switch: "rounded-full text-[#434A56] gap-2 px-4 py-2",
         icon: "rounded-full text-[#434A56] gap-2",
     }
     

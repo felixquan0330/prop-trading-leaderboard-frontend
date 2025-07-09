@@ -109,22 +109,40 @@ export default function TopTrader() {
                     <div className="flex justify-end items-center">
                         <div>
                             <Switch>
-                                <Button
-                                    className={`${selected === 'list' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white dark:opacity-70'}`}
-                                    onClick={() => handleSwitch('list')}
-                                    variant="switch"
+                                <button
+                                    onClick={() => {
+                                        handleSwitch('list')
+                                    }}
+                                    className={`inline-flex rounded-full p-[1px] transition-colors ${selected === 'list'
+                                        ? 'dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4] bg-[#CCD0D7]'
+                                        : 'dark:bg-transparent'}
+                                        `}
                                 >
-                                    <List className="w-4 h-4" />
-                                    List
-                                </Button>
-                                <Button
-                                    className={`${selected === 'grid' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white dark:opacity-70'}`}
-                                    onClick={() => handleSwitch('grid')}
-                                    variant="switch"
+                                    <div className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm ${selected === 'list'
+                                        ? 'dark:bg-[#404040] bg-[#E2E5E9] dark:text-white'
+                                        : 'bg-transparent text-[#16191d] border-none dark:text-white'}
+                                        `}>
+                                        <List className="w-4 h-4" />
+                                        <span>List</span>
+                                    </div>
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        handleSwitch('grid')
+                                    }}
+                                    className={`inline-flex rounded-full p-[1px] transition-colors ${selected === 'grid'
+                                        ? 'dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4] bg-[#CCD0D7]'
+                                        : 'dark:bg-transparent'}
+                                        `}
                                 >
-                                    <Grid className="w-4 h-4" />
-                                    Grid
-                                </Button>
+                                    <div className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm ${selected === 'grid'
+                                        ? 'dark:bg-[#404040] bg-[#E2E5E9] dark:text-white'
+                                        : 'bg-transparent text-[#16191d] border-none dark:text-white'}
+                                        `}>
+                                        <Grid className="w-4 h-4" />
+                                        <span>Grid</span>
+                                    </div>
+                                </button>
                             </Switch>
                         </div>
                     </div>
