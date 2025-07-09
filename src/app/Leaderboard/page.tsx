@@ -8,7 +8,7 @@ import { US, FR, GB, JP, AU, SA, CA, IT, IN, NZ } from 'country-flag-icons/react
 export default function Leaderboard() {
 
     const [selected, setSelected] = useState<'global' | 'goat'>('global')
-    const [activeTab, setActiveTab] = useState<'popular' | 'favourites' | 'new' | ''>('popular');
+    const [activeTabs, setActiveTabs] = useState<string[]>([]);
     const tabs = [
         { id: 'popular', label: 'Popular', icon: Popular },
         { id: 'favourites', label: 'Favourites', icon: Favourite },
@@ -109,21 +109,23 @@ export default function Leaderboard() {
                             </Button>
                             <div className="h-10 w-px bg-[#CCD0D7]"></div>
                             {tabs.map((tab) => {
-                                const isActive = activeTab === tab.id;
+                                const isActive = activeTabs.includes(tab.id);
                                 const Icon = tab.icon;
 
                                 return (
                                     <button
                                         key={tab.id}
-                                        onClick={() => setActiveTab(tab.id as 'popular' | 'favourites' | 'new')}
+                                        onClick={() => {
+                                            if (!isActive) setActiveTabs([...activeTabs, tab.id]);
+                                        }}
                                         className={`inline-flex rounded-full p-[1px] transition-colors ${isActive
-                                            ? 'bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4]'
+                                            ? 'dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4] bg-[#CCD0D7]'
                                             : 'dark:bg-transparent'}
                                         `}
                                     >
                                         <div className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm ${isActive
-                                            ? 'bg-[#404040] text-white'
-                                            : 'bg-white text-[#16191d] dark:bg-[#000000] dark:border border-[#525252] dark:text-white'}
+                                            ? 'dark:bg-[#404040] bg-[#E2E5E9] dark:text-white'
+                                            : 'bg-white text-[#16191d] dark:bg-[#000000] border border-[#CCD0D7] dark:border-[#525252] dark:text-white'}
                                         `}>
                                             <Icon className="w-4 h-4" />
                                             <span>{tab.label}</span>
@@ -132,7 +134,7 @@ export default function Leaderboard() {
                                                     className="ml-2 cursor-pointer flex items-center"
                                                     onClick={e => {
                                                         e.stopPropagation();
-                                                        setActiveTab('');
+                                                        setActiveTabs(activeTabs.filter(id => id !== tab.id));
                                                     }}
                                                 >
                                                     <Cross className="w-3 h-3" />
@@ -142,37 +144,6 @@ export default function Leaderboard() {
                                     </button>
                                 );
                             })}
-
-                            {/* <div
-                                className={
-                                    selectedTab === 'favourites'
-                                        ? 'rounded-full border border-[#E2E5E9] dark:border-none dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]'
-                                        : 'rounded-full border border-[#525252]'
-                                }
-                            >
-                                <button
-                                    className="flex flex-row items-center gap-1 px-3 py-2 rounded-full bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white border-none"
-                                    onClick={() => setSelectedTab('favourites')}
-                                >
-                                    <Favourite className="w-4 h-4" />
-                                    Favourites
-                                </button>
-                            </div>
-                            <div
-                                className={
-                                    selectedTab === 'new'
-                                        ? 'p-[1px] rounded-full border border-[#E2E5E9] dark:border-none dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]'
-                                        : 'p-[1px] rounded-full border border-[#525252]'
-                                }
-                            >
-                                <button
-                                    className="flex flex-row items-center gap-1 px-3 py-2 rounded-full bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white border-none"
-                                    onClick={() => setSelectedTab('new')}
-                                >
-                                    <New className="w-4 h-4" />
-                                    New
-                                </button>
-                            </div> */}
                         </div>
                         <div>
                             <Switch>
