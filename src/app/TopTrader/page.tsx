@@ -7,7 +7,7 @@ import { getCountryFlag } from '@/utils/countryFlags'
 
 export default function TopTrader() {
 
-    const [selected, setSelected] = useState<'global' | 'goat'>('global')
+    const [selected, setSelected] = useState<'list' | 'grid'>('list')
     const [ftmoData, setFtmoData] = useState<any>(null)
     const [fundedxData, setFundedxData] = useState<any>(null)
     const [fundingPipsData, setFundingPipsData] = useState<any>(null)
@@ -60,28 +60,28 @@ export default function TopTrader() {
         const fetchData = async () => {
             try {
                 setLoading(true)
-                
+
                 // Fetch FTMO data
                 const ftmoResponse = await fetch('/api/FTMO/')
                 if (ftmoResponse.ok) {
                     const ftmoData = await ftmoResponse.json()
                     setFtmoData(ftmoData)
                 }
-                
+
                 // Fetch FundedX data
                 const fundedxResponse = await fetch('/api/MyFundedFX/')
                 if (fundedxResponse.ok) {
                     const fundedxData = await fundedxResponse.json()
                     setFundedxData(fundedxData)
                 }
-                
+
                 // Fetch FundingPips data
                 const fundingPipsResponse = await fetch('/api/FundingPips/')
                 if (fundingPipsResponse.ok) {
                     const fundingPipsData = await fundingPipsResponse.json()
                     setFundingPipsData(fundingPipsData)
                 }
-                
+
             } catch (err) {
                 setError(err instanceof Error ? err.message : 'An error occurred')
             } finally {
@@ -92,7 +92,7 @@ export default function TopTrader() {
         fetchData()
     }, [])
 
-    const handleSwitch = (value: 'global' | 'goat') => {
+    const handleSwitch = (value: 'list' | 'grid') => {
         setSelected(value)
     }
 
@@ -110,16 +110,16 @@ export default function TopTrader() {
                         <div>
                             <Switch>
                                 <Button
-                                    className={`${selected === 'global' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white dark:opacity-70'}`}
-                                    onClick={() => handleSwitch('global')}
+                                    className={`${selected === 'list' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white dark:opacity-70'}`}
+                                    onClick={() => handleSwitch('list')}
                                     variant="switch"
                                 >
                                     <List className="w-4 h-4" />
                                     List
                                 </Button>
                                 <Button
-                                    className={`${selected === 'goat' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white dark:opacity-70'}`}
-                                    onClick={() => handleSwitch('goat')}
+                                    className={`${selected === 'grid' ? 'text-[#181A1C] shadow bg-white dark:bg-[#282828] dark:text-white' : 'text-[#7B849B] dark:text-white dark:opacity-70'}`}
+                                    onClick={() => handleSwitch('grid')}
                                     variant="switch"
                                 >
                                     <Grid className="w-4 h-4" />
@@ -134,10 +134,22 @@ export default function TopTrader() {
                                 <div className='flex items-center gap-2'>
                                     <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
                                     <span className='text-[#16191d] dark:text-white font-semibold'>FTMO</span>
-                                    <Button variant='outline' size='sm' className='text-[#434a56] bg-transparent rounded-full gap-1'>
-                                        <Discount className="w-4 h-4" />
-                                        Discount Offer
-                                    </Button>
+                                    <div className="
+                                        p-[1px] rounded-full
+                                        border border-[#E2E5E9]
+                                        dark:border-none
+                                        dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]
+                                    ">
+                                        <button className="
+                                            flex flex-row items-center gap-1 px-2 py-1 rounded-full
+                                            bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full
+                                            dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white
+                                            border-none
+                                        ">
+                                            <Discount className="w-4 h-4" />
+                                            Discount Offer
+                                        </button>
+                                    </div>
                                 </div>
                                 <div>
                                     <span className='text-[#434a56] dark:text-white text-sm font-semibold'>View Full Leaderboard</span>
@@ -175,7 +187,16 @@ export default function TopTrader() {
                                                     <Td>{trader.rank}</Td>
                                                     <Td>
                                                         <div className="flex items-center gap-2">
-                                                            <img src="/user-default.png" alt="top-trader" className='w-6 h-6 rounded-full' />
+                                                            <img
+                                                                src="/user-default-light.png"
+                                                                alt="top-trader"
+                                                                className="w-6 h-6 rounded-full dark:hidden"
+                                                            />
+                                                            <img
+                                                                src="/user-default-dark.png"
+                                                                alt="top-trader"
+                                                                className="w-6 h-6 rounded-full hidden dark:block"
+                                                            />
                                                             <span className="font-semibold">{trader.username}</span>
                                                             {trader.verified && <Check className="w-4 h-4" />}
                                                         </div>
@@ -208,6 +229,22 @@ export default function TopTrader() {
                                 <div className='flex items-center gap-2'>
                                     <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
                                     <span className='text-[#16191d] dark:text-white font-semibold'>FundedX</span>
+                                    <div className="
+                                        p-[1px] rounded-full
+                                        border border-[#E2E5E9]
+                                        dark:border-none
+                                        dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]
+                                    ">
+                                        <button className="
+                                            flex flex-row items-center gap-1 px-2 py-1 rounded-full
+                                            bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full
+                                            dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white
+                                            border-none
+                                        ">
+                                            <Discount className="w-4 h-4" />
+                                            Discount Offer
+                                        </button>
+                                    </div>
                                 </div>
                                 <div>
                                     <span className='text-[#434a56] dark:text-white text-sm font-semibold'>View Full Leaderboard</span>
@@ -245,7 +282,16 @@ export default function TopTrader() {
                                                     <Td>{trader.rank}</Td>
                                                     <Td>
                                                         <div className="flex items-center gap-2">
-                                                            <img src="/user-default.png" alt="top-trader" className='w-6 h-6 rounded-full' />
+                                                            <img
+                                                                src="/user-default-light.png"
+                                                                alt="top-trader"
+                                                                className="w-6 h-6 rounded-full dark:hidden"
+                                                            />
+                                                            <img
+                                                                src="/user-default-dark.png"
+                                                                alt="top-trader"
+                                                                className="w-6 h-6 rounded-full hidden dark:block"
+                                                            />
                                                             <span className="font-semibold">{trader.username}</span>
                                                             {trader.verified && <Check className="w-4 h-4" />}
                                                         </div>
@@ -278,6 +324,22 @@ export default function TopTrader() {
                                 <div className='flex items-center gap-2'>
                                     <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
                                     <span className='text-[#16191d] dark:text-white font-semibold'>FundingPips</span>
+                                    <div className="
+                                        p-[1px] rounded-full
+                                        border border-[#E2E5E9]
+                                        dark:border-none
+                                        dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]
+                                    ">
+                                        <button className="
+                                            flex flex-row items-center gap-1 px-2 py-1 rounded-full
+                                            bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full
+                                            dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white
+                                            border-none
+                                        ">
+                                            <Discount className="w-4 h-4" />
+                                            Discount Offer
+                                        </button>
+                                    </div>
                                 </div>
                                 <div>
                                     <span className='text-[#434a56] dark:text-white text-sm font-semibold'>View Full Leaderboard</span>
@@ -315,7 +377,16 @@ export default function TopTrader() {
                                                     <Td>{trader.rank}</Td>
                                                     <Td>
                                                         <div className="flex items-center gap-2">
-                                                            <img src="/user-default.png" alt="top-trader" className='w-6 h-6 rounded-full' />
+                                                            <img
+                                                                src="/user-default-light.png"
+                                                                alt="top-trader"
+                                                                className="w-6 h-6 rounded-full dark:hidden"
+                                                            />
+                                                            <img
+                                                                src="/user-default-dark.png"
+                                                                alt="top-trader"
+                                                                className="w-6 h-6 rounded-full hidden dark:block"
+                                                            />
                                                             <span className="font-semibold">{trader.username}</span>
                                                             {trader.verified && <Check className="w-4 h-4" />}
                                                         </div>
@@ -348,6 +419,22 @@ export default function TopTrader() {
                                 <div className='flex items-center gap-2'>
                                     <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
                                     <span className='text-[#16191d] dark:text-white font-semibold'>Apex One</span>
+                                    <div className="
+                                        p-[1px] rounded-full
+                                        border border-[#E2E5E9]
+                                        dark:border-none
+                                        dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]
+                                    ">
+                                        <button className="
+                                            flex flex-row items-center gap-1 px-2 py-1 rounded-full
+                                            bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full
+                                            dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white
+                                            border-none
+                                        ">
+                                            <Discount className="w-4 h-4" />
+                                            Discount Offer
+                                        </button>
+                                    </div>
                                 </div>
                                 <div>
                                     <span className='text-[#434a56] dark:text-white text-sm font-semibold'>View Full Leaderboard</span>
@@ -368,7 +455,16 @@ export default function TopTrader() {
                                                 <Td>{index + 1}</Td>
                                                 <Td>
                                                     <div className="flex items-center gap-2">
-                                                        <img src="/user-default.png" alt="top-trader" className='w-6 h-6 rounded-full' />
+                                                        <img
+                                                            src="/user-default-light.png"
+                                                            alt="top-trader"
+                                                            className="w-6 h-6 rounded-full dark:hidden"
+                                                        />
+                                                        <img
+                                                            src="/user-default-dark.png"
+                                                            alt="top-trader"
+                                                            className="w-6 h-6 rounded-full hidden dark:block"
+                                                        />
                                                         <span className="font-semibold">{trader.username}</span>
                                                         {index === 0 && <Check className="w-4 h-4" />}
                                                     </div>
@@ -403,6 +499,22 @@ export default function TopTrader() {
                                 <div className='flex items-center gap-2'>
                                     <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
                                     <span className='text-[#16191d] dark:text-white font-semibold'>Maverick Traders</span>
+                                    <div className="
+                                        p-[1px] rounded-full
+                                        border border-[#E2E5E9]
+                                        dark:border-none
+                                        dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]
+                                    ">
+                                        <button className="
+                                            flex flex-row items-center gap-1 px-2 py-1 rounded-full
+                                            bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full
+                                            dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white
+                                            border-none
+                                        ">
+                                            <Discount className="w-4 h-4" />
+                                            Discount Offer
+                                        </button>
+                                    </div>
                                 </div>
                                 <div>
                                     <span className='text-[#434a56] dark:text-white text-sm font-semibold'>View Full Leaderboard</span>
@@ -423,7 +535,16 @@ export default function TopTrader() {
                                                 <Td>{index + 1}</Td>
                                                 <Td>
                                                     <div className="flex items-center gap-2">
-                                                        <img src="/user-default.png" alt="top-trader" className='w-6 h-6 rounded-full' />
+                                                        <img
+                                                            src="/user-default-light.png"
+                                                            alt="top-trader"
+                                                            className="w-6 h-6 rounded-full dark:hidden"
+                                                        />
+                                                        <img
+                                                            src="/user-default-dark.png"
+                                                            alt="top-trader"
+                                                            className="w-6 h-6 rounded-full hidden dark:block"
+                                                        />
                                                         <span className="font-semibold">{trader.username}</span>
                                                         {index === 0 && <Check className="w-4 h-4" />}
                                                     </div>

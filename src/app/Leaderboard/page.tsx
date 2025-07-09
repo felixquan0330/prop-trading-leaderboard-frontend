@@ -150,7 +150,16 @@ export default function Leaderboard() {
                                     <Td>{index + 1}</Td>
                                     <Td>
                                         <div className="flex items-center gap-2">
-                                            <img src="/user-default.png" alt="top-trader" className='w-6 h-6 rounded-full' />
+                                            <img
+                                                src="/user-default-light.png"
+                                                alt="top-trader"
+                                                className="w-6 h-6 rounded-full dark:hidden"
+                                            />
+                                            <img
+                                                src="/user-default-dark.png"
+                                                alt="top-trader"
+                                                className="w-6 h-6 rounded-full hidden dark:block"
+                                            />
                                             <span className="font-semibold">{trader.username}</span>
                                             {index === 0 && <Check className="w-4 h-4" />}
                                         </div>

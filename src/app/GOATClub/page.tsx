@@ -31,7 +31,7 @@ export default function GOATClub() {
                         <div className="flex gap-6">
                             <div className="w-1/4">
                                 <GOATClubCard
-                                    avatarUrl="/user-default.png"
+                                    avatarUrl="/user-default-light.png"
                                     username="PipHunterX"
                                     country="USA"
                                     firm="Alpha Prop Firm"
@@ -41,7 +41,7 @@ export default function GOATClub() {
                             </div>
                             <div className="w-1/4">
                                 <GOATClubCard
-                                    avatarUrl="/user-default.png"
+                                    avatarUrl="/user-default-light.png"
                                     username="DuneTrader"
                                     country="SA"
                                     firm="DesertEdge"
@@ -51,7 +51,7 @@ export default function GOATClub() {
                             </div>
                             <div className="w-1/4">
                                 <GOATClubCard
-                                    avatarUrl="/user-default.png"
+                                    avatarUrl="/user-default-light.png"
                                     username="SniperWolfFX"
                                     country="UK"
                                     firm="Titan Trades"
@@ -61,7 +61,7 @@ export default function GOATClub() {
                             </div>
                             <div className="w-1/4">
                                 <GOATClubCard
-                                    avatarUrl="/user-default.png"
+                                    avatarUrl="/user-default-light.png"
                                     username="ChartSurfer"
                                     country="FRA"
                                     firm="PropElite"

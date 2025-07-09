@@ -23,7 +23,7 @@ export const GOATClubCard: React.FC<GOATClubCardProps> = ({
             <div className="flex justify-between items-start w-full mb-2">
                 <div className="flex items-center gap-2">
                     <img
-                        src={avatarUrl || '/user-default.png'}
+                        src={avatarUrl || '/user-default-light.png'}
                         alt={username}
                         className="w-10 h-10 rounded-full object-cover border border-gray-200 bg-gray-100"
                     />
@@ -45,9 +45,21 @@ export const GOATClubCard: React.FC<GOATClubCardProps> = ({
                 <span className="text-md font-bold text-[#16191d] dark:text-white">{payout}</span>
                 <span className="italic text-[#7B849B] dark:text-white dark:opacity-70 text-sm">“{quote}”</span>
             </div>
-            <button className="mt-3 px-5 py-2 rounded-md border border-gray-300 bg-white dark:bg-[#282828] text-[#16191d] dark:text-white hover:bg-gray-50 dark:hover:bg-[#3F3F3F] dark:hover:text-white dark:border-[#3F3F3F] transition text-sm">
-                View Profile
-            </button>
+            <div className="
+                p-[1px] rounded-full
+                border border-[#E2E5E9]
+                dark:border-none
+                dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]
+            ">
+                <button className="
+                    rounded-full px-5 py-2
+                    bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full
+                    dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white
+                    border-none
+                ">
+                    View Profile
+                </button>
+            </div>
         </div>
     );
 };

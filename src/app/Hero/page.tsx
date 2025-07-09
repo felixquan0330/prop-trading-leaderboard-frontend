@@ -13,12 +13,25 @@ export default function Hero() {
                         <div className="text-[#434a56] dark:text-white text-[22px] font-semibold tracking-wide dark:opacity-70">
                             Track performance across top firms. Live rankings, win rates, badges and more.
                         </div>
-                        <div className="dark:bg-[#404040] dark:text-white text-[22px] font-semibold border border-[#E2E5E9] dark:border-[#525252] p-6 gap-3 rounded-2xl flex flex-col items-center justify-center">
-                            <div>Verifed Data You Can Trust</div>
-                            <div className='text-[15px] text-[#434A56] dark:text-white dark:opacity-70'>Tracked, ranked, and updated daily from real prop trading data.</div>
-                            <div className='flex items-center gap-3'>
-                                <Badge>✅ Accurate & Verified</Badge>
-                                <Badge>🔎 Proof-Driven Results</Badge>
+                        <div className="
+                            relative p-[2px] rounded-2xl
+                            dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]
+                            dark:shadow-[0_0_25px_0_#9AEBFB]
+                        ">
+                            <div className="
+                                rounded-2xl h-[192px] flex flex-col items-center justify-center gap-3
+                                bg-white dark:bg-[#232b33]/90
+                                text-[22px] dark:text-white
+                                px-8
+                            ">
+                                <div className="font-semibold">Verified Data You Can Trust</div>
+                                <div className='text-[15px] text-[#434A56] dark:text-white dark:opacity-70'>
+                                    Tracked, ranked, and updated daily from real prop trading data.
+                                </div>
+                                <div className='flex items-center gap-3'>
+                                    <Badge>✅ Accurate & Verified</Badge>
+                                    <Badge>🔎 Proof-Driven Results</Badge>
+                                </div>
                             </div>
                         </div>
                     </div>
