@@ -146,19 +146,19 @@ export default function PropFirmReview() {
             <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-8">
                     <div className="flex flex-col gap-3">
-                        <h6 className="text-[#16191d] dark:text-white text-2xl font-bold text-center">Prop Firm Reviews</h6>
-                        <p className="text-[#434a56] dark:text-white dark:opacity-70 text-center text-md font-medium">
+                        <h6 className="text-white text-2xl font-bold text-center">Prop Firm Reviews</h6>
+                        <p className="text-white opacity-70 text-center text-md font-medium">
                             Compare top prop firms by rules, payout speed, and trader ratings
                         </p>
                     </div>
                     <div className="flex flex-col gap-4">
                         <div className="flex justify-end items-center gap-2">
-                            <div className="text-[#434a56] dark:text-white text-sm font-medium">See more</div>
+                            <div className="text-white text-sm font-medium">See more</div>
                             <div className="flex gap-4 items-center">
                                 <Button 
                                     variant="icon" 
                                     size="fit" 
-                                    className={`text-[#434a56] bg-transparent rounded-full border hover:bg-gray-50 dark:hover:bg-[#3F3F3F] transition-colors ${isAnimating ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                    className={`text-white bg-transparent rounded-full border hover:bg-[#3F3F3F] transition-colors ${isAnimating ? 'opacity-50 cursor-not-allowed' : ''}`}
                                     onClick={prevSlide}
                                     disabled={isAnimating}
                                 >
@@ -167,7 +167,7 @@ export default function PropFirmReview() {
                                 <Button 
                                     variant="icon" 
                                     size="fit" 
-                                    className={`text-[#434a56] bg-transparent rounded-full border hover:bg-gray-50 dark:hover:bg-[#3F3F3F] transition-colors ${isAnimating ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                    className={`text-white bg-transparent rounded-full border hover:bg-[#3F3F3F] transition-colors ${isAnimating ? 'opacity-50 cursor-not-allowed' : ''}`}
                                     onClick={nextSlide}
                                     disabled={isAnimating}
                                 >
@@ -202,18 +202,16 @@ export default function PropFirmReview() {
                                 ))}
                             </div>
                         </div>
-                        <PaginationDots total={totalSlides} activeIndex={currentSlide} onClick={goToSlide} />
+                        <div className="flex justify-center">
+                            <PaginationDots 
+                                total={totalSlides} 
+                                activeIndex={currentSlide} 
+                                onClick={goToSlide}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center">
-                <Button
-                    variant="outline"
-                    className="text-[#434a56] dark:text-white bg-transparent rounded-sm border dark:border-[#3F3F3F]
-                                dark:text-white dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4] dark:border-none dark:hover:opacity-90">
-                    See All
-                </Button>
-            </div>
         </div>
-    )
+    );
 }

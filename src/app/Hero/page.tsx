@@ -12,26 +12,26 @@ export default function Hero() {
             <section className="flex flex-col items-center justify-center gap-20 text-center h-full relative z-10">
                 <div className="flex flex-col items-center justify-center gap-10">
                     <div className="flex flex-col gap-8">
-                        <div className="text-[40px] text-[#16191d] dark:text-white font-semibold tracking-tighter">
+                        <div className="text-[40px] text-white font-semibold tracking-tighter">
                             The Ultimate Leaderboard for Prop Traders
                         </div>
-                        <div className="text-[#434a56] dark:text-white text-[22px] font-semibold tracking-normal">
+                        <div className="text-white text-[22px] font-semibold tracking-normal">
                             Track performance across top firms. Live rankings, win rates, badges and more.
                         </div>
                         <div className="
                             relative p-[2px] rounded-2xl
-                            dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]
-                            dark:shadow-[0_0_25px_0_#9AEBFB]
+                            bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4]
+                            shadow-[0_0_25px_0_#9AEBFB]
                         ">
                             <div className="
                                 rounded-2xl h-[192px] flex flex-col items-center justify-center gap-3
-                                bg-white dark:bg-[#232b33]/90
-                                text-[22px] dark:text-white
+                                bg-[#232b33]/90
+                                text-[22px] text-white
                                 px-8
-                                border border-[#E2E5E9]
+                                border border-[#3F3F3F]
                             ">
                                 <div className="font-semibold">Verified Data You Can Trust</div>
-                                <div className='text-[15px] text-[#434A56] dark:text-white'>
+                                <div className='text-[15px] text-white'>
                                     Tracked, ranked, and updated daily from real prop trading data.
                                 </div>
                                 <div className='flex items-center gap-3'>
@@ -44,14 +44,12 @@ export default function Hero() {
                     <div className="flex gap-4">
                         <div className="
                             p-[1px] rounded-md
-                            border border-[#E2E5E9]
-                            dark:border-none
-                            dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]
+                            border-none
+                            bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4]
                         ">
                             <button className="
                                 rounded-md px-5 py-2
-                                bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full
-                                dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white
+                                bg-[#282828] text-white hover:bg-[#3F3F3F] transition text-sm w-full
                                 border-none
                             ">
                                 View Leaderboard
@@ -59,8 +57,8 @@ export default function Hero() {
                         </div>
                         <Button
                             className="bg-transparent hover:bg-[#434a56] border-[#434A56] border-1 rounded-md
-                                        dark:text-white dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4] dark:border-none dark:hover:opacity-90">
-                            <span className="text-[#434A56] dark:text-white dark:dark:opacity-70 hover:text-white text-base">GOAT Club</span>
+                                        text-white bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4] border-none hover:opacity-90">
+                            <span className="text-white opacity-70 hover:text-white text-base">GOAT Club</span>
                         </Button>
                     </div>
                 </div>

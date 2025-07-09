@@ -8,7 +8,7 @@ import { PaginationDots } from "@/components/component/paginationDots";
 // Card data for sliding
 const cardsData = [
     {
-        avatarUrl: "/user-default-light.png",
+        avatarUrl: "/user-default-dark.png",
         username: "PipHunterX",
         country: "USA",
         firm: "Alpha Prop Firm",
@@ -16,7 +16,7 @@ const cardsData = [
         quote: "One trade at a time."
     },
     {
-        avatarUrl: "/user-default-light.png",
+        avatarUrl: "/user-default-dark.png",
         username: "DuneTrader",
         country: "SA",
         firm: "DesertEdge",
@@ -24,7 +24,7 @@ const cardsData = [
         quote: "Patience pays."
     },
     {
-        avatarUrl: "/user-default-light.png",
+        avatarUrl: "/user-default-dark.png",
         username: "SniperWolfFX",
         country: "UK",
         firm: "Titan Trades",
@@ -32,7 +32,7 @@ const cardsData = [
         quote: "Precision is everything."
     },
     {
-        avatarUrl: "/user-default-light.png",
+        avatarUrl: "/user-default-dark.png",
         username: "ChartSurfer",
         country: "FRA",
         firm: "PropElite",
@@ -40,7 +40,7 @@ const cardsData = [
         quote: "Ride the wave."
     },
     {
-        avatarUrl: "/user-default-light.png",
+        avatarUrl: "/user-default-dark.png",
         username: "VolatilityKing",
         country: "USA",
         firm: "RiskMaster Pro",
@@ -48,7 +48,7 @@ const cardsData = [
         quote: "Embrace the chaos."
     },
     {
-        avatarUrl: "/user-default-light.png",
+        avatarUrl: "/user-default-dark.png",
         username: "TrendTracker",
         country: "UK",
         firm: "Momentum Capital",
@@ -56,7 +56,7 @@ const cardsData = [
         quote: "Follow the trend."
     },
     {
-        avatarUrl: "/user-default-light.png",
+        avatarUrl: "/user-default-dark.png",
         username: "ScalpMaster",
         country: "FRA",
         firm: "QuickTrades",
@@ -64,7 +64,7 @@ const cardsData = [
         quote: "Small gains, big results."
     },
     {
-        avatarUrl: "/user-default-light.png",
+        avatarUrl: "/user-default-dark.png",
         username: "FundamentalFX",
         country: "SA",
         firm: "Economic Edge",
@@ -110,19 +110,19 @@ export default function GOATClub() {
             <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-8">
                     <div className="flex flex-col gap-3">
-                        <h6 className="text-[#16191d] dark:text-white text-2xl font-bold text-center">GOAT Club</h6>
-                        <p className="text-[#434a56] dark:text-white dark:opacity-70 text-center text-md font-medium">
+                        <h6 className="text-white text-2xl font-bold text-center">GOAT Club</h6>
+                        <p className="text-white opacity-70 text-center text-md font-medium">
                             Spotlighting the best traders with verified payouts over $100K
                         </p>
                     </div>
                     <div className="flex flex-col gap-4">
                         <div className="flex justify-end items-center gap-2">
-                            <div className="text-[#434a56] dark:text-white text-sm font-medium">See more</div>
+                            <div className="text-white text-sm font-medium">See more</div>
                             <div className="flex gap-4 items-center">
                                 <Button 
                                     variant="icon" 
                                     size="fit" 
-                                    className={`text-[#434a56] bg-transparent rounded-full border hover:bg-gray-50 dark:hover:bg-[#3F3F3F] transition-colors ${isAnimating ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                    className={`text-white bg-transparent rounded-full border hover:bg-[#3F3F3F] transition-colors ${isAnimating ? 'opacity-50 cursor-not-allowed' : ''}`}
                                     onClick={prevSlide}
                                     disabled={isAnimating}
                                 >
@@ -131,7 +131,7 @@ export default function GOATClub() {
                                 <Button 
                                     variant="icon" 
                                     size="fit" 
-                                    className={`text-[#434a56] bg-transparent rounded-full border hover:bg-gray-50 dark:hover:bg-[#3F3F3F] transition-colors ${isAnimating ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                    className={`text-white bg-transparent rounded-full border hover:bg-[#3F3F3F] transition-colors ${isAnimating ? 'opacity-50 cursor-not-allowed' : ''}`}
                                     onClick={nextSlide}
                                     disabled={isAnimating}
                                 >
@@ -172,8 +172,8 @@ export default function GOATClub() {
             <div className="flex justify-center">
                 <Button
                     variant="outline"
-                    className="text-[#434a56] dark:text-white bg-transparent rounded-sm border dark:border-[#3F3F3F]
-                                dark:text-white dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4] dark:border-none dark:hover:opacity-90">
+                    className="text-white bg-transparent rounded-sm border border-[#3F3F3F]
+                                text-white bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4] border-none hover:opacity-90">
                     See All
                 </Button>
             </div>

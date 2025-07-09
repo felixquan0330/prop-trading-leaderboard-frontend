@@ -1,91 +1,50 @@
 "use client"
-import { useState, useEffect } from 'react'
-import { Button, Switch, Badge } from '@/components'
-import { List, Grid, Discount, Check } from '@/components'
-import { Table, TableHeader, TableBody, TableRow, Th, Td } from '@/components'
-import { getCountryFlag } from '@/utils/countryFlags'
+import { useState, useEffect } from 'react';
+import { Badge, Button, Switch, Table, TableHeader, TableBody, TableRow, Th, Td, List, Grid, Discount, Check } from '@/components';
+import { getCountryFlag } from '@/utils/countryFlags';
 
 export default function TopTrader() {
-
-    const [selected, setSelected] = useState<'list' | 'grid'>('list')
-    const [ftmoData, setFtmoData] = useState<any>(null)
-    const [fundedxData, setFundedxData] = useState<any>(null)
-    const [fundingPipsData, setFundingPipsData] = useState<any>(null)
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState<string | null>(null)
-
-    const apexOneTraders = [
-        {
-            username: "PipHunterX",
-            country: "USA",
-            pnl: "+$52,340",
-            badges: ["🔥 Profit Streak", "🏆 Top Gun"],
-        },
-        {
-            username: "SniperWolfFX",
-            country: "UK",
-            pnl: "+$48,900",
-            badges: ["🎯 Sniper Entry", "🔥 Profit Streak"],
-        },
-        {
-            username: "ChartSurfer",
-            country: "FRA",
-            pnl: "+$45,120",
-            badges: ["🔥 Profit Streak", "📝 Consistency King"],
-        },
-    ];
-
-    const maverickTraders = [
-        {
-            username: "PipHunterX",
-            country: "USA",
-            pnl: "+$52,340",
-            badges: ["🔥 Profit Streak", "🏆 Top Gun"],
-        },
-        {
-            username: "SniperWolfFX",
-            country: "UK",
-            pnl: "+$48,900",
-            badges: ["🎯 Sniper Entry", "🔥 Profit Streak"],
-        },
-        {
-            username: "ChartSurfer",
-            country: "FRA",
-            pnl: "+$45,120",
-            badges: ["🔥 Profit Streak", "📝 Consistency King"],
-        },
-    ];
+    const [selected, setSelected] = useState<'list' | 'grid'>('list');
+    const [ftmoData, setFtmoData] = useState<any>(null);
+    const [fundedxData, setFundedxData] = useState<any>(null);
+    const [fundingpipsData, setFundingpipsData] = useState<any>(null);
+    const [apexData, setApexData] = useState<any>(null);
+    const [maverickData, setMaverickData] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                setLoading(true)
+                setLoading(true);
+                setError(null);
 
-                // Fetch FTMO data
-                const ftmoResponse = await fetch('/api/FTMO/')
-                if (ftmoResponse.ok) {
-                    const ftmoData = await ftmoResponse.json()
-                    setFtmoData(ftmoData)
-                }
+                const [ftmoResponse, fundedxResponse, fundingpipsResponse, apexResponse, maverickResponse] = await Promise.all([
+                    fetch('/api/FTMO'),
+                    fetch('/api/MyFundedFX'),
+                    fetch('/api/FundingPips'),
+                    fetch('/api/FTMO'),
+                    fetch('/api/FTMO')
+                ]);
 
-                // Fetch FundedX data
-                const fundedxResponse = await fetch('/api/MyFundedFX/')
-                if (fundedxResponse.ok) {
-                    const fundedxData = await fundedxResponse.json()
-                    setFundedxData(fundedxData)
-                }
+                const [ftmoData, fundedxData, fundingpipsData, apexData, maverickData] = await Promise.all([
+                    ftmoResponse.json(),
+                    fundedxResponse.json(),
+                    fundingpipsResponse.json(),
+                    apexResponse.json(),
+                    maverickResponse.json()
+                ]);
 
-                // Fetch FundingPips data
-                const fundingPipsResponse = await fetch('/api/FundingPips/')
-                if (fundingPipsResponse.ok) {
-                    const fundingPipsData = await fundingPipsResponse.json()
-                    setFundingPipsData(fundingPipsData)
-                }
-
+                setFtmoData(ftmoData);
+                setFundedxData(fundedxData);
+                setFundingpipsData(fundingpipsData);
+                setApexData(apexData);
+                setMaverickData(maverickData);
             } catch (err) {
-                setError(err instanceof Error ? err.message : 'An error occurred')
+                setError('Failed to fetch data');
+                console.error('Error fetching data:', err);
             } finally {
-                setLoading(false)
+                setLoading(false);
             }
         }
 
@@ -100,9 +59,9 @@ export default function TopTrader() {
         <div className="max-w-[1440px] w-full mx-auto px-20 pt-24 pb-16 flex flex-col gap-6">
             <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-3">
-                    <h6 className="text-[#16191d] dark:text-white text-2xl font-bold text-center">Top Traders by Firm</h6>
-                    <p className="text-[#434a56] dark:text-white dark:opacity-70 text-center text-md font-medium">
-                        See who’s leading the pack at each prop firm this week.
+                    <h6 className="text-white text-2xl font-bold text-center">Top Traders by Firm</h6>
+                    <p className="text-white opacity-70 text-center text-md font-medium">
+                        See who's leading the pack at each prop firm this week.
                     </p>
                 </div>
                 <div className="flex flex-col gap-6">
@@ -114,13 +73,13 @@ export default function TopTrader() {
                                         handleSwitch('list')
                                     }}
                                     className={`inline-flex rounded-full p-[1px] transition-colors ${selected === 'list'
-                                        ? 'dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4] bg-[#CCD0D7]'
-                                        : 'dark:bg-transparent'}
+                                        ? 'bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4]'
+                                        : 'bg-transparent'}
                                         `}
                                 >
                                     <div className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm ${selected === 'list'
-                                        ? 'dark:bg-[#404040] bg-[#E2E5E9] dark:text-white'
-                                        : 'bg-transparent text-[#16191d] border-none dark:text-white'}
+                                        ? 'bg-[#404040] text-white'
+                                        : 'bg-transparent text-white border-none'}
                                         `}>
                                         <List className="w-4 h-4" />
                                         <span>List</span>
@@ -131,13 +90,13 @@ export default function TopTrader() {
                                         handleSwitch('grid')
                                     }}
                                     className={`inline-flex rounded-full p-[1px] transition-colors ${selected === 'grid'
-                                        ? 'dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4] bg-[#CCD0D7]'
-                                        : 'dark:bg-transparent'}
+                                        ? 'bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4]'
+                                        : 'bg-transparent'}
                                         `}
                                 >
                                     <div className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm ${selected === 'grid'
-                                        ? 'dark:bg-[#404040] bg-[#E2E5E9] dark:text-white'
-                                        : 'bg-transparent text-[#16191d] border-none dark:text-white'}
+                                        ? 'bg-[#404040] text-white'
+                                        : 'bg-transparent text-white border-none'}
                                         `}>
                                         <Grid className="w-4 h-4" />
                                         <span>Grid</span>
@@ -151,17 +110,15 @@ export default function TopTrader() {
                             <div className='flex justify-between items-center'>
                                 <div className='flex items-center gap-2'>
                                     <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
-                                    <span className='text-[#16191d] dark:text-white font-semibold'>FTMO</span>
+                                    <span className='text-white font-semibold'>FTMO</span>
                                     <div className="
                                         p-[1px] rounded-full
-                                        border border-[#E2E5E9]
-                                        dark:border-none
-                                        dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]
+                                        border-none
+                                        bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4]
                                     ">
                                         <button className="
                                             flex flex-row items-center gap-1 px-2 py-1 rounded-full
-                                            bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full
-                                            dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white
+                                            bg-[#282828] text-white hover:bg-[#3F3F3F] transition text-sm w-full
                                             border-none
                                         ">
                                             <Discount className="w-4 h-4" />
@@ -170,7 +127,7 @@ export default function TopTrader() {
                                     </div>
                                 </div>
                                 <div>
-                                    <span className='text-[#434a56] dark:text-white text-sm font-semibold'>View Full Leaderboard</span>
+                                    <span className='text-white text-sm font-semibold'>View Full Leaderboard</span>
                                 </div>
                             </div>
                             <div className='flex flex-col gap-8'>
@@ -206,14 +163,9 @@ export default function TopTrader() {
                                                     <Td>
                                                         <div className="flex items-center gap-2">
                                                             <img
-                                                                src="/user-default-light.png"
-                                                                alt="top-trader"
-                                                                className="w-6 h-6 rounded-full dark:hidden"
-                                                            />
-                                                            <img
                                                                 src="/user-default-dark.png"
                                                                 alt="top-trader"
-                                                                className="w-6 h-6 rounded-full hidden dark:block"
+                                                                className="w-6 h-6 rounded-full"
                                                             />
                                                             <span className="font-semibold">{trader.username}</span>
                                                             {trader.verified && <Check className="w-4 h-4" />}
@@ -222,11 +174,11 @@ export default function TopTrader() {
                                                     <Td>
                                                         <div className="flex items-center gap-2">
                                                             {FlagComponent && <FlagComponent title={trader.country} className="w-4 h-4" />}
-                                                            <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
+                                                            <span className="text-white opacity-70">{trader.country}</span>
                                                         </div>
                                                     </Td>
                                                     <Td>
-                                                        <div className="bg-[#F6F7F8] dark:bg-[#275130] border border-[#E2E5E9] dark:border-none rounded-md p-1">{trader.pnl}</div>
+                                                        <div className="bg-[#275130] border-none rounded-md p-1">{trader.pnl}</div>
                                                     </Td>
                                                     <Td>
                                                         <div className="flex flex-wrap gap-2 justify-center">
@@ -246,17 +198,15 @@ export default function TopTrader() {
                             <div className='flex justify-between items-center'>
                                 <div className='flex items-center gap-2'>
                                     <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
-                                    <span className='text-[#16191d] dark:text-white font-semibold'>FundedX</span>
+                                    <span className='text-white font-semibold'>FundedX</span>
                                     <div className="
                                         p-[1px] rounded-full
-                                        border border-[#E2E5E9]
-                                        dark:border-none
-                                        dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]
+                                        border-none
+                                        bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4]
                                     ">
                                         <button className="
                                             flex flex-row items-center gap-1 px-2 py-1 rounded-full
-                                            bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full
-                                            dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white
+                                            bg-[#282828] text-white hover:bg-[#3F3F3F] transition text-sm w-full
                                             border-none
                                         ">
                                             <Discount className="w-4 h-4" />
@@ -265,7 +215,7 @@ export default function TopTrader() {
                                     </div>
                                 </div>
                                 <div>
-                                    <span className='text-[#434a56] dark:text-white text-sm font-semibold'>View Full Leaderboard</span>
+                                    <span className='text-white text-sm font-semibold'>View Full Leaderboard</span>
                                 </div>
                             </div>
                             <div className='flex flex-col gap-8'>
@@ -301,14 +251,9 @@ export default function TopTrader() {
                                                     <Td>
                                                         <div className="flex items-center gap-2">
                                                             <img
-                                                                src="/user-default-light.png"
-                                                                alt="top-trader"
-                                                                className="w-6 h-6 rounded-full dark:hidden"
-                                                            />
-                                                            <img
                                                                 src="/user-default-dark.png"
                                                                 alt="top-trader"
-                                                                className="w-6 h-6 rounded-full hidden dark:block"
+                                                                className="w-6 h-6 rounded-full"
                                                             />
                                                             <span className="font-semibold">{trader.username}</span>
                                                             {trader.verified && <Check className="w-4 h-4" />}
@@ -317,11 +262,11 @@ export default function TopTrader() {
                                                     <Td>
                                                         <div className="flex items-center gap-2">
                                                             {FlagComponent && <FlagComponent title={trader.country} className="w-4 h-4" />}
-                                                            <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
+                                                            <span className="text-white opacity-70">{trader.country}</span>
                                                         </div>
                                                     </Td>
                                                     <Td>
-                                                        <div className="bg-[#F6F7F8] dark:bg-[#275130] border border-[#E2E5E9] dark:border-none rounded-md p-1">{trader.pnl}</div>
+                                                        <div className="bg-[#275130] border-none rounded-md p-1">{trader.pnl}</div>
                                                     </Td>
                                                     <Td>
                                                         <div className="flex flex-wrap gap-2 justify-center">
@@ -341,17 +286,15 @@ export default function TopTrader() {
                             <div className='flex justify-between items-center'>
                                 <div className='flex items-center gap-2'>
                                     <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
-                                    <span className='text-[#16191d] dark:text-white font-semibold'>FundingPips</span>
+                                    <span className='text-white font-semibold'>FundingPips</span>
                                     <div className="
                                         p-[1px] rounded-full
-                                        border border-[#E2E5E9]
-                                        dark:border-none
-                                        dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]
+                                        border-none
+                                        bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4]
                                     ">
                                         <button className="
                                             flex flex-row items-center gap-1 px-2 py-1 rounded-full
-                                            bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full
-                                            dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white
+                                            bg-[#282828] text-white hover:bg-[#3F3F3F] transition text-sm w-full
                                             border-none
                                         ">
                                             <Discount className="w-4 h-4" />
@@ -360,7 +303,7 @@ export default function TopTrader() {
                                     </div>
                                 </div>
                                 <div>
-                                    <span className='text-[#434a56] dark:text-white text-sm font-semibold'>View Full Leaderboard</span>
+                                    <span className='text-white text-sm font-semibold'>View Full Leaderboard</span>
                                 </div>
                             </div>
                             <div className='flex flex-col gap-8'>
@@ -388,7 +331,7 @@ export default function TopTrader() {
                                                     Error: {error}
                                                 </Td>
                                             </TableRow>
-                                        ) : fundingPipsData?.bestTrades?.map((trader: any, index: number) => {
+                                        ) : fundingpipsData?.global?.map((trader: any, index: number) => {
                                             const FlagComponent = getCountryFlag(trader.countryCode)
                                             return (
                                                 <TableRow key={index}>
@@ -396,14 +339,9 @@ export default function TopTrader() {
                                                     <Td>
                                                         <div className="flex items-center gap-2">
                                                             <img
-                                                                src="/user-default-light.png"
-                                                                alt="top-trader"
-                                                                className="w-6 h-6 rounded-full dark:hidden"
-                                                            />
-                                                            <img
                                                                 src="/user-default-dark.png"
                                                                 alt="top-trader"
-                                                                className="w-6 h-6 rounded-full hidden dark:block"
+                                                                className="w-6 h-6 rounded-full"
                                                             />
                                                             <span className="font-semibold">{trader.username}</span>
                                                             {trader.verified && <Check className="w-4 h-4" />}
@@ -412,11 +350,11 @@ export default function TopTrader() {
                                                     <Td>
                                                         <div className="flex items-center gap-2">
                                                             {FlagComponent && <FlagComponent title={trader.country} className="w-4 h-4" />}
-                                                            <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
+                                                            <span className="text-white opacity-70">{trader.country}</span>
                                                         </div>
                                                     </Td>
                                                     <Td>
-                                                        <div className="bg-[#F6F7F8] dark:bg-[#275130] border border-[#E2E5E9] dark:border-none rounded-md p-1">{trader.pnl}</div>
+                                                        <div className="bg-[#275130] border-none rounded-md p-1">{trader.pnl}</div>
                                                     </Td>
                                                     <Td>
                                                         <div className="flex flex-wrap gap-2 justify-center">
@@ -436,17 +374,15 @@ export default function TopTrader() {
                             <div className='flex justify-between items-center'>
                                 <div className='flex items-center gap-2'>
                                     <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
-                                    <span className='text-[#16191d] dark:text-white font-semibold'>Apex One</span>
+                                    <span className='text-white font-semibold'>Apex One</span>
                                     <div className="
                                         p-[1px] rounded-full
-                                        border border-[#E2E5E9]
-                                        dark:border-none
-                                        dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]
+                                        border-none
+                                        bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4]
                                     ">
                                         <button className="
                                             flex flex-row items-center gap-1 px-2 py-1 rounded-full
-                                            bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full
-                                            dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white
+                                            bg-[#282828] text-white hover:bg-[#3F3F3F] transition text-sm w-full
                                             border-none
                                         ">
                                             <Discount className="w-4 h-4" />
@@ -455,7 +391,7 @@ export default function TopTrader() {
                                     </div>
                                 </div>
                                 <div>
-                                    <span className='text-[#434a56] dark:text-white text-sm font-semibold'>View Full Leaderboard</span>
+                                    <span className='text-white text-sm font-semibold'>View Full Leaderboard</span>
                                 </div>
                             </div>
                             <div className='flex flex-col gap-8'>
@@ -468,46 +404,56 @@ export default function TopTrader() {
                                         <Th>BADGES</Th>
                                     </TableHeader>
                                     <TableBody>
-                                        {apexOneTraders.map((trader, index) => (
-                                            <TableRow key={index}>
-                                                <Td>{index + 1}</Td>
-                                                <Td>
-                                                    <div className="flex items-center gap-2">
-                                                        <img
-                                                            src="/user-default-light.png"
-                                                            alt="top-trader"
-                                                            className="w-6 h-6 rounded-full dark:hidden"
-                                                        />
-                                                        <img
-                                                            src="/user-default-dark.png"
-                                                            alt="top-trader"
-                                                            className="w-6 h-6 rounded-full hidden dark:block"
-                                                        />
-                                                        <span className="font-semibold">{trader.username}</span>
-                                                        {index === 0 && <Check className="w-4 h-4" />}
-                                                    </div>
-                                                </Td>
-                                                <Td>
-                                                    <div className="flex items-center gap-2">
-                                                        {(() => {
-                                                            const FlagComponent = getCountryFlag(trader.country)
-                                                            return FlagComponent ? <FlagComponent title={trader.country} className="w-4 h-4" /> : null
-                                                        })()}
-                                                        <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
-                                                    </div>
-                                                </Td>
-                                                <Td>
-                                                    <div className="bg-[#F6F7F8] dark:bg-[#275130] border border-[#E2E5E9] dark:border-none rounded-md p-1">{trader.pnl}</div>
-                                                </Td>
-                                                <Td>
-                                                    <div className="flex flex-wrap gap-2 justify-center">
-                                                        {trader.badges.map((badge, i) => (
-                                                            <Badge key={i}>{badge}</Badge>
-                                                        ))}
+                                        {loading ? (
+                                            <TableRow>
+                                                <Td className="text-center py-8">
+                                                    <div className="flex items-center justify-center">
+                                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                                                        <span className="ml-2">Loading Apex One data...</span>
                                                     </div>
                                                 </Td>
                                             </TableRow>
-                                        ))}
+                                        ) : error ? (
+                                            <TableRow>
+                                                <Td className="text-center py-8 text-red-500">
+                                                    Error: {error}
+                                                </Td>
+                                            </TableRow>
+                                        ) : apexData?.global?.map((trader: any, index: number) => {
+                                            const FlagComponent = getCountryFlag(trader.countryCode)
+                                            return (
+                                                <TableRow key={index}>
+                                                    <Td>{trader.rank}</Td>
+                                                    <Td>
+                                                        <div className="flex items-center gap-2">
+                                                            <img
+                                                                src="/user-default-dark.png"
+                                                                alt="top-trader"
+                                                                className="w-6 h-6 rounded-full"
+                                                            />
+                                                            <span className="font-semibold">{trader.username}</span>
+                                                            {trader.verified && <Check className="w-4 h-4" />}
+                                                        </div>
+                                                    </Td>
+                                                    <Td>
+                                                        <div className="flex items-center gap-2">
+                                                            {FlagComponent && <FlagComponent title={trader.country} className="w-4 h-4" />}
+                                                            <span className="text-white opacity-70">{trader.country}</span>
+                                                        </div>
+                                                    </Td>
+                                                    <Td>
+                                                        <div className="bg-[#275130] border-none rounded-md p-1">{trader.pnl}</div>
+                                                    </Td>
+                                                    <Td>
+                                                        <div className="flex flex-wrap gap-2 justify-center">
+                                                            {trader.badges.map((badge: string, i: number) => (
+                                                                <Badge key={i}>{badge}</Badge>
+                                                            ))}
+                                                        </div>
+                                                    </Td>
+                                                </TableRow>
+                                            )
+                                        })}
                                     </TableBody>
                                 </Table>
                             </div>
@@ -516,17 +462,15 @@ export default function TopTrader() {
                             <div className='flex justify-between items-center'>
                                 <div className='flex items-center gap-2'>
                                     <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
-                                    <span className='text-[#16191d] dark:text-white font-semibold'>Maverick Traders</span>
+                                    <span className='text-white font-semibold'>Maverick Traders</span>
                                     <div className="
                                         p-[1px] rounded-full
-                                        border border-[#E2E5E9]
-                                        dark:border-none
-                                        dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]
+                                        border-none
+                                        bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4]
                                     ">
                                         <button className="
                                             flex flex-row items-center gap-1 px-2 py-1 rounded-full
-                                            bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full
-                                            dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white
+                                            bg-[#282828] text-white hover:bg-[#3F3F3F] transition text-sm w-full
                                             border-none
                                         ">
                                             <Discount className="w-4 h-4" />
@@ -535,7 +479,7 @@ export default function TopTrader() {
                                     </div>
                                 </div>
                                 <div>
-                                    <span className='text-[#434a56] dark:text-white text-sm font-semibold'>View Full Leaderboard</span>
+                                    <span className='text-white text-sm font-semibold'>View Full Leaderboard</span>
                                 </div>
                             </div>
                             <div className='flex flex-col gap-8'>
@@ -548,46 +492,56 @@ export default function TopTrader() {
                                         <Th>BADGES</Th>
                                     </TableHeader>
                                     <TableBody>
-                                        {maverickTraders.map((trader, index) => (
-                                            <TableRow key={index}>
-                                                <Td>{index + 1}</Td>
-                                                <Td>
-                                                    <div className="flex items-center gap-2">
-                                                        <img
-                                                            src="/user-default-light.png"
-                                                            alt="top-trader"
-                                                            className="w-6 h-6 rounded-full dark:hidden"
-                                                        />
-                                                        <img
-                                                            src="/user-default-dark.png"
-                                                            alt="top-trader"
-                                                            className="w-6 h-6 rounded-full hidden dark:block"
-                                                        />
-                                                        <span className="font-semibold">{trader.username}</span>
-                                                        {index === 0 && <Check className="w-4 h-4" />}
-                                                    </div>
-                                                </Td>
-                                                <Td>
-                                                    <div className="flex items-center gap-2">
-                                                        {(() => {
-                                                            const FlagComponent = getCountryFlag(trader.country)
-                                                            return FlagComponent ? <FlagComponent title={trader.country} className="w-4 h-4" /> : null
-                                                        })()}
-                                                        <span className="text-[#434A56] dark:text-white dark:opacity-70">{trader.country}</span>
-                                                    </div>
-                                                </Td>
-                                                <Td>
-                                                    <div className="bg-[#F6F7F8] dark:bg-[#275130] border border-[#E2E5E9] dark:border-none rounded-md p-1">{trader.pnl}</div>
-                                                </Td>
-                                                <Td>
-                                                    <div className="flex flex-wrap gap-2 justify-center">
-                                                        {trader.badges.map((badge, i) => (
-                                                            <Badge key={i}>{badge}</Badge>
-                                                        ))}
+                                        {loading ? (
+                                            <TableRow>
+                                                <Td className="text-center py-8">
+                                                    <div className="flex items-center justify-center">
+                                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                                                        <span className="ml-2">Loading Maverick Traders data...</span>
                                                     </div>
                                                 </Td>
                                             </TableRow>
-                                        ))}
+                                        ) : error ? (
+                                            <TableRow>
+                                                <Td className="text-center py-8 text-red-500">
+                                                    Error: {error}
+                                                </Td>
+                                            </TableRow>
+                                        ) : maverickData?.global?.map((trader: any, index: number) => {
+                                            const FlagComponent = getCountryFlag(trader.countryCode)
+                                            return (
+                                                <TableRow key={index}>
+                                                    <Td>{trader.rank}</Td>
+                                                    <Td>
+                                                        <div className="flex items-center gap-2">
+                                                            <img
+                                                                src="/user-default-dark.png"
+                                                                alt="top-trader"
+                                                                className="w-6 h-6 rounded-full"
+                                                            />
+                                                            <span className="font-semibold">{trader.username}</span>
+                                                            {trader.verified && <Check className="w-4 h-4" />}
+                                                        </div>
+                                                    </Td>
+                                                    <Td>
+                                                        <div className="flex items-center gap-2">
+                                                            {FlagComponent && <FlagComponent title={trader.country} className="w-4 h-4" />}
+                                                            <span className="text-white opacity-70">{trader.country}</span>
+                                                        </div>
+                                                    </Td>
+                                                    <Td>
+                                                        <div className="bg-[#275130] border-none rounded-md p-1">{trader.pnl}</div>
+                                                    </Td>
+                                                    <Td>
+                                                        <div className="flex flex-wrap gap-2 justify-center">
+                                                            {trader.badges.map((badge: string, i: number) => (
+                                                                <Badge key={i}>{badge}</Badge>
+                                                            ))}
+                                                        </div>
+                                                    </Td>
+                                                </TableRow>
+                                            )
+                                        })}
                                     </TableBody>
                                 </Table>
                             </div>

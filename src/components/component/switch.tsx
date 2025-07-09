@@ -1,10 +1,12 @@
+import React from 'react';
+
 interface SwitchProps {
-    children: React.ReactNode
+    children: React.ReactNode;
 }
 
 export const Switch = ({ children }: SwitchProps) => {
     return (
-        <div className="flex bg-[#F7F8FA] dark:bg-[#171717] rounded-full p-1 w-fit shadow-sm">
+        <div className="flex bg-[#171717] rounded-full p-1 w-fit shadow-sm">
             {children}
         </div>
     );

@@ -15,7 +15,7 @@ export const PaginationDots: React.FC<PaginationDotsProps> = ({
         {Array.from({ length: total }).map((_, idx) => (
             <button
                 key={idx}
-                className={`w-2 h-2 rounded-full transition-colors ${idx === activeIndex ? "bg-gray-500" : "bg-gray-100"
+                className={`w-2 h-2 rounded-full transition-colors ${idx === activeIndex ? "bg-[#9CECFB]" : "bg-[#3F3F3F]"
                     }`}
                 onClick={() => onClick?.(idx)}
                 aria-label={`Go to slide ${idx + 1}`}
