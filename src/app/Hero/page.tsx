@@ -12,10 +12,10 @@ export default function Hero() {
             <section className="flex flex-col items-center justify-center gap-20 text-center h-full relative z-10">
                 <div className="flex flex-col items-center justify-center gap-10">
                     <div className="flex flex-col gap-8">
-                        <div className="text-[40px] text-[#16191d] dark:text-white font-semibold">
+                        <div className="text-[40px] text-[#16191d] dark:text-white font-semibold tracking-tighter">
                             The Ultimate Leaderboard for Prop Traders
                         </div>
-                        <div className="text-[#434a56] dark:text-white text-[22px] font-semibold tracking-wide dark:opacity-70">
+                        <div className="text-[#434a56] dark:text-white text-[22px] font-semibold tracking-normal">
                             Track performance across top firms. Live rankings, win rates, badges and more.
                         </div>
                         <div className="
@@ -28,9 +28,10 @@ export default function Hero() {
                                 bg-white dark:bg-[#232b33]/90
                                 text-[22px] dark:text-white
                                 px-8
+                                border border-[#E2E5E9]
                             ">
                                 <div className="font-semibold">Verified Data You Can Trust</div>
-                                <div className='text-[15px] text-[#434A56] dark:text-white dark:opacity-70'>
+                                <div className='text-[15px] text-[#434A56] dark:text-white'>
                                     Tracked, ranked, and updated daily from real prop trading data.
                                 </div>
                                 <div className='flex items-center gap-3'>

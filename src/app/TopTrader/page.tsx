@@ -101,7 +101,7 @@ export default function TopTrader() {
             <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-3">
                     <h6 className="text-[#16191d] dark:text-white text-2xl font-bold text-center">Top Traders by Firm</h6>
-                    <p className="text-[#434a56] dark:text-white dark:opacity-70 text-center text-sm font-medium">
+                    <p className="text-[#434a56] dark:text-white dark:opacity-70 text-center text-md font-medium">
                         See who’s leading the pack at each prop firm this week.
                     </p>
                 </div>
