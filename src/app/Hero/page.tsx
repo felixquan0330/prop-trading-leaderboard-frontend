@@ -42,9 +42,21 @@ export default function Hero() {
                         </div>
                     </div>
                     <div className="flex gap-4">
-                        <Button className="bg-transparent hover:bg-[#434a56] border-[#434A56] border-1 rounded-md">
-                            <span className="text-[#434A56] dark:text-white dark:dark:opacity-70 hover:text-white text-base">View Leaderboard</span>
-                        </Button>
+                        <div className="
+                            p-[1px] rounded-md
+                            border border-[#E2E5E9]
+                            dark:border-none
+                            dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]
+                        ">
+                            <button className="
+                                rounded-md px-5 py-2
+                                bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full
+                                dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white
+                                border-none
+                            ">
+                                View Leaderboard
+                            </button>
+                        </div>
                         <Button
                             className="bg-transparent hover:bg-[#434a56] border-[#434A56] border-1 rounded-md
                                         dark:text-white dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4] dark:border-none dark:hover:opacity-90">
