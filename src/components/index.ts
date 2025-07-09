@@ -17,6 +17,6 @@ export type { CardProps } from './component/card'
 export { Input } from './component/input'
 export type { InputProps } from './component/input'
 
-export { Filter, Popular, Favourite, New, Global, Crown, List, Grid, Discount, Check, Weekend, Calendar, FireWall, Dollar, ActiveRating, InactiveRating } from './component/icons'
+export { Filter, Popular, Favourite, New, Global, Crown, List, Grid, Discount, Check, Weekend, Calendar, FireWall, Dollar, ActiveRating, InactiveRating, Cross } from './component/icons'
 export type { IconProps } from './component/icons'
 

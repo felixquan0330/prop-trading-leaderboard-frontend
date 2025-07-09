@@ -1,13 +1,19 @@
 "use client"
 import { useState } from 'react'
 import { Button, Switch, Filter, Badge } from '@/components'
-import { Popular, Favourite, New, Global, Crown, Check } from '@/components'
+import { Popular, Favourite, New, Global, Crown, Check, Cross } from '@/components'
 import { Table, TableHeader, TableBody, TableRow, Th, Td } from '@/components'
 import { US, FR, GB, JP, AU, SA, CA, IT, IN, NZ } from 'country-flag-icons/react/3x2'
 
 export default function Leaderboard() {
 
     const [selected, setSelected] = useState<'global' | 'goat'>('global')
+    const [activeTab, setActiveTab] = useState<'popular' | 'favourites' | 'new' | ''>('popular');
+    const tabs = [
+        { id: 'popular', label: 'Popular', icon: Popular },
+        { id: 'favourites', label: 'Favourites', icon: Favourite },
+        { id: 'new', label: 'New', icon: New },
+    ];
     const leaderboardData = [
         {
             username: "PipHunterX",
@@ -102,17 +108,71 @@ export default function Leaderboard() {
                                 Filter
                             </Button>
                             <div className="h-10 w-px bg-[#CCD0D7]"></div>
-                            <Button variant="outline" className="text-[#434a56] dark:text-white dark:opacity-70 bg-transparent rounded-full gap-1">
-                                <Popular className="w-4 h-4" />
-                                Popular
-                            </Button>
-                            <Button variant="outline" className="text-[#434a56] dark:text-white dark:opacity-70 bg-transparent rounded-full gap-1">
-                                <Favourite className="w-4 h-4" />Favourites
-                            </Button>
-                            <Button variant="outline" className="text-[#434a56] dark:text-white dark:opacity-70 bg-transparent rounded-full gap-1">
-                                <New className="w-4 h-4" />
-                                New
-                            </Button>
+                            {tabs.map((tab) => {
+                                const isActive = activeTab === tab.id;
+                                const Icon = tab.icon;
+
+                                return (
+                                    <button
+                                        key={tab.id}
+                                        onClick={() => setActiveTab(tab.id as 'popular' | 'favourites' | 'new')}
+                                        className={`inline-flex rounded-full p-[1px] transition-colors ${isActive
+                                            ? 'bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4]'
+                                            : 'dark:bg-transparent'}
+                                        `}
+                                    >
+                                        <div className={`flex items-center gap-2 px-3 py-2 rounded-full text-sm ${isActive
+                                            ? 'bg-[#404040] text-white'
+                                            : 'bg-white text-[#16191d] dark:bg-[#000000] dark:border border-[#525252] dark:text-white'}
+                                        `}>
+                                            <Icon className="w-4 h-4" />
+                                            <span>{tab.label}</span>
+                                            {isActive && (
+                                                <span
+                                                    className="ml-2 cursor-pointer flex items-center"
+                                                    onClick={e => {
+                                                        e.stopPropagation();
+                                                        setActiveTab('');
+                                                    }}
+                                                >
+                                                    <Cross className="w-3 h-3" />
+                                                </span>
+                                            )}
+                                        </div>
+                                    </button>
+                                );
+                            })}
+
+                            {/* <div
+                                className={
+                                    selectedTab === 'favourites'
+                                        ? 'rounded-full border border-[#E2E5E9] dark:border-none dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]'
+                                        : 'rounded-full border border-[#525252]'
+                                }
+                            >
+                                <button
+                                    className="flex flex-row items-center gap-1 px-3 py-2 rounded-full bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white border-none"
+                                    onClick={() => setSelectedTab('favourites')}
+                                >
+                                    <Favourite className="w-4 h-4" />
+                                    Favourites
+                                </button>
+                            </div>
+                            <div
+                                className={
+                                    selectedTab === 'new'
+                                        ? 'p-[1px] rounded-full border border-[#E2E5E9] dark:border-none dark:bg-gradient-to-b dark:from-[#9CECFB] dark:via-[#65C7F7] dark:to-[#0052D4]'
+                                        : 'p-[1px] rounded-full border border-[#525252]'
+                                }
+                            >
+                                <button
+                                    className="flex flex-row items-center gap-1 px-3 py-2 rounded-full bg-white text-[#16191d] hover:bg-gray-50 transition text-sm w-full dark:bg-[#282828] dark:text-white dark:hover:bg-[#3F3F3F] dark:hover:text-white border-none"
+                                    onClick={() => setSelectedTab('new')}
+                                >
+                                    <New className="w-4 h-4" />
+                                    New
+                                </button>
+                            </div> */}
                         </div>
                         <div>
                             <Switch>
