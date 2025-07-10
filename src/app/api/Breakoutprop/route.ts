@@ -14,17 +14,18 @@ export async function GET(req: NextRequest) {
     });
 
     const page = await browser.newPage();
-    await page.goto("https://portal.breakoutprop.com/app/leaderboard", {
+    // https://portal.breakoutprop.com/app/leaderboard    
+    await page.goto("https://portal.breakoutprop.com/app/leaderboard/", {
       waitUntil: "networkidle2",
     });
 
-    await page.waitForSelector(".leaderboard__row");
+    await page.waitForSelector(".MuiListItem-root");
 
     const data: LeaderboardItem[] = await page.evaluate(() => {
-      const rows = Array.from(document.querySelectorAll(".leaderboard__row"));
+      const rows = Array.from(document.querySelectorAll(".MuiListItem-root"));
       return rows.map((row) => {
-        const name = row.querySelector(".css-1xczk6k")?.textContent?.trim() || "";
-        const profit = row.querySelector(".css-1pi6ksg")?.textContent?.trim() || "";
+        const name = row.querySelector(".MuiListItemText-root")?.textContent?.trim() || "";
+        const profit = row.querySelector(".MuiListItemSecondaryAction-root")?.textContent?.trim() || "";
         return { name, profit };
       });
     });

@@ -13,7 +13,7 @@ export default function TopTrader() {
     const [breakoutpropData, setBreakoutpropData] = useState<any>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    
+
     // Sorting states for each firm
     const [ftmoSort, setFtmoSort] = useState<'asc' | 'desc'>('desc');
     const [fundedxSort, setFundedxSort] = useState<'asc' | 'desc'>('desc');
@@ -51,10 +51,20 @@ export default function TopTrader() {
                 setLoading(false);
             }
         }
-        
 
-        fetchData()
+
+        // fetchData()
     }, [])
+
+    useEffect(() => {
+        fetch("/api/Breakoutprop")
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                setBreakoutpropData(data);
+            })
+            .catch(console.error);
+    }, []);
 
     const handleSwitch = (value: 'list' | 'grid') => {
         setSelected(value)
@@ -169,8 +179,8 @@ export default function TopTrader() {
                             <div className='flex flex-col gap-8'>
                                 <Table>
                                     <TableHeader >
-                                        <Th 
-                                            className="flex items-center justify-center gap-2 hover:cursor-pointer" 
+                                        <Th
+                                            className="flex items-center justify-center gap-2 hover:cursor-pointer"
                                             onClick={handleFtmoSort}
                                         >
                                             RANK {ftmoSort === 'desc' ? <SortUp className="w-4 h-4" /> : <SortDown className="w-4 h-4" />}
@@ -262,8 +272,8 @@ export default function TopTrader() {
                             <div className='flex flex-col gap-8'>
                                 <Table>
                                     <TableHeader >
-                                        <Th 
-                                            className="flex items-center justify-center gap-2 hover:cursor-pointer" 
+                                        <Th
+                                            className="flex items-center justify-center gap-2 hover:cursor-pointer"
                                             onClick={handleFundedxSort}
                                         >
                                             RANK {fundedxSort === 'desc' ? <SortUp className="w-4 h-4" /> : <SortDown className="w-4 h-4" />}
@@ -355,8 +365,8 @@ export default function TopTrader() {
                             <div className='flex flex-col gap-8'>
                                 <Table>
                                     <TableHeader >
-                                        <Th 
-                                            className="flex items-center justify-center gap-2 hover:cursor-pointer" 
+                                        <Th
+                                            className="flex items-center justify-center gap-2 hover:cursor-pointer"
                                             onClick={handleFundingpipsSort}
                                         >
                                             RANK {fundingpipsSort === 'desc' ? <SortUp className="w-4 h-4" /> : <SortDown className="w-4 h-4" />}
@@ -448,8 +458,8 @@ export default function TopTrader() {
                             <div className='flex flex-col gap-8'>
                                 <Table>
                                     <TableHeader >
-                                        <Th 
-                                            className="flex items-center justify-center gap-2 hover:cursor-pointer" 
+                                        <Th
+                                            className="flex items-center justify-center gap-2 hover:cursor-pointer"
                                             onClick={handleBreakoutpropSort}
                                         >
                                             RANK {breakoutpropSort === 'desc' ? <SortUp className="w-4 h-4" /> : <SortDown className="w-4 h-4" />}
