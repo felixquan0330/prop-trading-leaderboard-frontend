@@ -1,5 +1,4 @@
-// pages/api/leaderboard.ts
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest } from "next/server";
 import puppeteer from "puppeteer";
 
 type LeaderboardItem = {
@@ -7,13 +6,10 @@ type LeaderboardItem = {
   profit: string;
 };
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<LeaderboardItem[] | { error: string }>
-) {
+export async function GET(req: NextRequest) {
   try {
     const browser = await puppeteer.launch({
-      headless: true, // or true if this causes issues
+      headless: true,
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
 
@@ -34,9 +30,15 @@ export default async function handler(
     });
 
     await browser.close();
-    res.status(200).json(data);
+    return new Response(JSON.stringify(data), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (err: any) {
     console.error("Scrape error:", err.message);
-    res.status(500).json({ error: "Failed to scrape leaderboard" });
+    return new Response(JSON.stringify({ error: "Failed to scrape leaderboard" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }
