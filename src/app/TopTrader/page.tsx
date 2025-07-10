@@ -51,9 +51,20 @@ export default function TopTrader() {
                 setLoading(false);
             }
         }
+        
 
-        fetchData()
+        // fetchData()
     }, [])
+
+    useEffect(() => {
+        fetch("/api/Breakoutprop")
+          .then((res) =>{
+            console.log(res.json());
+            return res.json();
+          })
+          .then(setBreakoutpropData)
+          .catch(console.error);
+      }, []);
 
     const handleSwitch = (value: 'list' | 'grid') => {
         setSelected(value)
