@@ -30,7 +30,7 @@ export default function TopTrader() {
                     fetch('/api/FTMO'),
                     fetch('/api/MyFundedFX'),
                     fetch('/api/FundingPips'),
-                    fetch('/api/FTMO'),
+                    fetch('/api/Breakoutprop'),
                 ]);
 
                 const [ftmoData, fundedxData, fundingpipsData, breakoutpropData] = await Promise.all([
@@ -53,18 +53,8 @@ export default function TopTrader() {
         }
         
 
-        // fetchData()
+        fetchData()
     }, [])
-
-    useEffect(() => {
-        fetch("/api/Breakoutprop")
-          .then((res) =>{
-            console.log(res.json());
-            return res.json();
-          })
-          .then(setBreakoutpropData)
-          .catch(console.error);
-      }, []);
 
     const handleSwitch = (value: 'list' | 'grid') => {
         setSelected(value)
