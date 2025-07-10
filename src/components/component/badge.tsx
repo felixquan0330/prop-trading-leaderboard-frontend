@@ -3,7 +3,7 @@ export const Badge = ({ children, className = '' }: { children: React.ReactNode;
         <span
             className="
                 bg-[#3F3F3F] 
-                rounded-full px-3 py-1 
+                rounded-full px-2 py-1 
                 text-xs font-medium text-white
                 border border-[#737373]"
         >

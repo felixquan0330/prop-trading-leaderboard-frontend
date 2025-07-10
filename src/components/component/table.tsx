@@ -19,13 +19,13 @@ export const TableBody = ({ children, className = '' }: { children: React.ReactN
 );
 
 export const TableRow = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
-    <tr className={`hover:bg-[#3F3F3F] transition-colors ${className}`}>
+    <tr className={`hover:bg-[#252525] transition-colors ${className}`}>
         {children}
     </tr>
 );
 
-export const Th = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
-    <th className={`p-4 text-center font-semibold text-white border-b border-[#3F3F3F] ${className}`}>
+export const Th = ({ children, className = '', ...props }: { children: React.ReactNode; className?: string; [key: string]: any }) => (
+    <th className={`p-4 text-center font-thin text-sm text-white border-b border-[#3F3F3F] ${className}`} {...props}>
         {children}
     </th>
 );

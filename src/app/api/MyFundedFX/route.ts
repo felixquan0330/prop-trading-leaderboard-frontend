@@ -20,21 +20,23 @@ export async function GET(request: NextRequest) {
     
     // Transform the data to match our frontend structure
     const transformedData = {
-      global: data.data?.map((trader: any) => ({
-        rank: trader.rank,
-        username: trader.shortName,
-        country: "Unknown", // FundedX API doesn't provide country info
-        countryCode: "US", // Default to US since no country data
-        pnl: `+$${trader.profit.toLocaleString()}`,
-        profit: trader.profit,
-        profitPercentage: trader.percReturn,
-        deposit: trader.initialBalance,
-        equity: trader.currentEquity,
-        badges: generateBadges(trader.percReturn),
-        verified: trader.rank <= 3, // Top 3 are verified
-        daysTraded: trader.daysTraded,
-        back: trader.back,
-      })) || [],
+      global: data.data
+        ?.sort((a: any, b: any) => b.profit - a.profit) // Sort by profit descending
+        .map((trader: any, index: number) => ({
+          rank: index + 1, // Recalculate rank after sorting
+          username: trader.shortName,
+          country: "Unknown", // FundedX API doesn't provide country info
+          countryCode: "Unknown", // Default to US since no country data
+          pnl: `+$${trader.profit.toLocaleString()}`,
+          profit: trader.profit,
+          profitPercentage: trader.percReturn,
+          deposit: trader.initialBalance,
+          equity: trader.currentEquity,
+          badges: generateBadges(trader.percReturn),
+          verified: index < 3, // Top 3 are verified
+          daysTraded: trader.daysTraded,
+          back: trader.back,
+        })) || [],
     };
 
     return NextResponse.json(transformedData);

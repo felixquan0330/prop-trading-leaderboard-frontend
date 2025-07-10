@@ -21,45 +21,54 @@ export async function GET(request: NextRequest) {
     
     // Transform the data to match our frontend structure
     const transformedData = {
-      global: data.data.GLOBAL?.slice(0, 10).map((trader: any, index: number) => ({
-        rank: index + 1,
-        username: trader.clientName,
-        country: trader.clientCountryName,
-        countryCode: trader.clientCountry,
-        pnl: `+$${trader.profit.toLocaleString()}`,
-        profit: trader.profit,
-        profitPercentage: trader.profitPercentage,
-        deposit: trader.deposit,
-        equity: trader.equity,
-        badges: generateBadges(trader.profitPercentage),
-        verified: index < 3, // Top 3 are verified
-      })) || [],
-      challenge10: data.data.CHALLENGE_10?.slice(0, 10).map((trader: any, index: number) => ({
-        rank: index + 1,
-        username: trader.clientName,
-        country: trader.clientCountryName,
-        countryCode: trader.clientCountry,
-        pnl: `+$${trader.profit.toLocaleString()}`,
-        profit: trader.profit,
-        profitPercentage: trader.profitPercentage,
-        deposit: trader.deposit,
-        equity: trader.equity,
-        badges: generateBadges(trader.profitPercentage),
-        verified: index < 3,
-      })) || [],
-      challenge200: data.data.CHALLENGE_200?.slice(0, 10).map((trader: any, index: number) => ({
-        rank: index + 1,
-        username: trader.clientName,
-        country: trader.clientCountryName,
-        countryCode: trader.clientCountry,
-        pnl: `+$${trader.profit.toLocaleString()}`,
-        profit: trader.profit,
-        profitPercentage: trader.profitPercentage,
-        deposit: trader.deposit,
-        equity: trader.equity,
-        badges: generateBadges(trader.profitPercentage),
-        verified: index < 3,
-      })) || [],
+      global: data.data.GLOBAL
+        ?.sort((a: any, b: any) => b.profit - a.profit) // Sort by profit descending
+        .slice(0, 10)
+        .map((trader: any, index: number) => ({
+          rank: index + 1,
+          username: trader.clientName,
+          country: trader.clientCountryName,
+          countryCode: trader.clientCountry,
+          pnl: `+$${trader.profit.toLocaleString()}`,
+          profit: trader.profit,
+          profitPercentage: trader.profitPercentage,
+          deposit: trader.deposit,
+          equity: trader.equity,
+          badges: generateBadges(trader.profitPercentage),
+          verified: index < 3, // Top 3 are verified
+        })) || [],
+      challenge10: data.data.CHALLENGE_10
+        ?.sort((a: any, b: any) => b.profit - a.profit) // Sort by profit descending
+        .slice(0, 10)
+        .map((trader: any, index: number) => ({
+          rank: index + 1,
+          username: trader.clientName,
+          country: trader.clientCountryName,
+          countryCode: trader.clientCountry,
+          pnl: `+$${trader.profit.toLocaleString()}`,
+          profit: trader.profit,
+          profitPercentage: trader.profitPercentage,
+          deposit: trader.deposit,
+          equity: trader.equity,
+          badges: generateBadges(trader.profitPercentage),
+          verified: index < 3,
+        })) || [],
+      challenge200: data.data.CHALLENGE_200
+        ?.sort((a: any, b: any) => b.profit - a.profit) // Sort by profit descending
+        .slice(0, 10)
+        .map((trader: any, index: number) => ({
+          rank: index + 1,
+          username: trader.clientName,
+          country: trader.clientCountryName,
+          countryCode: trader.clientCountry,
+          pnl: `+$${trader.profit.toLocaleString()}`,
+          profit: trader.profit,
+          profitPercentage: trader.profitPercentage,
+          deposit: trader.deposit,
+          equity: trader.equity,
+          badges: generateBadges(trader.profitPercentage),
+          verified: index < 3,
+        })) || [],
     };
 
     return NextResponse.json(transformedData);

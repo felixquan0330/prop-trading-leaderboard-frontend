@@ -24,18 +24,21 @@ export async function GET(request: NextRequest) {
     
     // Transform the data to match our frontend structure
     const transformedData = {
-      bestTrades: data?.slice(0, 10).map((trader: any, index: number) => ({
-        rank: index + 1,
-        username: trader.user_name,
-        country: getCountryName(trader.user_country_code),
-        countryCode: trader.user_country_code || 'US',
-        pnl: `+$${parseFloat(trader.account_profit).toLocaleString()}`,
-        profit: parseFloat(trader.account_profit),
-        profitPercentage: trader.account_profit_percentage,
-        accountSize: trader.account_size,
-        badges: generateBadges(trader.account_profit_percentage),
-        verified: index < 3, // Top 3 are verified
-      })) || [],
+      bestTrades: data
+        ?.sort((a: any, b: any) => parseFloat(b.account_profit) - parseFloat(a.account_profit)) // Sort by profit descending
+        .slice(0, 10)
+        .map((trader: any, index: number) => ({
+          rank: index + 1,
+          username: trader.user_name,
+          country: getCountryName(trader.user_country_code),
+          countryCode: trader.user_country_code || 'US',
+          pnl: `+$${parseFloat(trader.account_profit).toLocaleString()}`,
+          profit: parseFloat(trader.account_profit),
+          profitPercentage: trader.account_profit_percentage,
+          accountSize: trader.account_size,
+          badges: generateBadges(trader.account_profit_percentage),
+          verified: index < 3, // Top 3 are verified
+        })) || [],
     };
 
     return NextResponse.json(transformedData);

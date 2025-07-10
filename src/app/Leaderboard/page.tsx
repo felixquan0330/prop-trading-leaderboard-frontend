@@ -208,7 +208,7 @@ export default function Leaderboard() {
                                         </div>
                                     </Td>
                                     <Td>
-                                        <div className="flex items-center gap-2">
+                                        <div className="flex items-center justify-center gap-2">
                                             {trader.country === "USA" && <US title="United States" className="w-4 h-4" />}
                                             {trader.country === "FRA" && <FR title="France" className="w-4 h-4" />}
                                             {trader.country === "UK" && <GB title="United Kingdom" className="w-4 h-4" />}
@@ -223,8 +223,8 @@ export default function Leaderboard() {
                                         </div>
                                     </Td>
                                     <Td><span className="text-white opacity-70">{trader.firm}</span></Td>
-                                    <Td>
-                                        <div className="bg-[#275130] border-none rounded-md p-1">{trader.pnl}</div>
+                                    <Td className="flex justify-center">
+                                        <div className="bg-[#275130] border-none rounded-md px-2 py-1 text-sm w-fit">{trader.pnl}</div>
                                     </Td>
                                     <Td>
                                         <div className="flex flex-wrap gap-2 justify-center">
