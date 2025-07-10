@@ -30,27 +30,36 @@ export async function GET(req: NextRequest) {
       page.waitForNavigation({ waitUntil: "networkidle2" }),
     ]);
 
-    // 4. Now go to leaderboard page
-    await page.goto("https://portal.breakoutprop.com/app/leaderboard/", {
-      waitUntil: "networkidle2",
-    });
+    // Get the current URL (should be dashboard)
+    const dashboardUrl = page.url();
+    console.log("Dashboard URL:", dashboardUrl);
 
-    // 5. Scrape as before
-    await page.waitForSelector(".MuiListItem-root");
-    const data: LeaderboardItem[] = await page.evaluate(() => {
-      const rows = Array.from(document.querySelectorAll(".MuiListItem-root"));
-      return rows.map((row) => {
-        const name = row.querySelector(".MuiListItemText-root")?.textContent?.trim() || "";
-        const profit = row.querySelector(".MuiListItemSecondaryAction-root")?.textContent?.trim() || "";
-        return { name, profit };
-      });
-    });
-
-    await browser.close();
-    return new Response(JSON.stringify(data), {
+    return new Response(JSON.stringify({ dashboardUrl }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
+
+    // 4. Now go to leaderboard page
+    // await page.goto("https://portal.breakoutprop.com/app/leaderboard/", {
+    //   waitUntil: "networkidle2",
+    // });
+
+    // // 5. Scrape as before
+    // await page.waitForSelector(".MuiListItem-root");
+    // const data: LeaderboardItem[] = await page.evaluate(() => {
+    //   const rows = Array.from(document.querySelectorAll(".MuiListItem-root"));
+    //   return rows.map((row) => {
+    //     const name = row.querySelector(".MuiListItemText-root")?.textContent?.trim() || "";
+    //     const profit = row.querySelector(".MuiListItemSecondaryAction-root")?.textContent?.trim() || "";
+    //     return { name, profit };
+    //   });
+    // });
+
+    // await browser.close();
+    // return new Response(JSON.stringify(data), {
+    //   status: 200,
+    //   headers: { "Content-Type": "application/json" },
+    // });
   } catch (err: any) {
     console.error("Scrape error:", err);
     return new Response(JSON.stringify({ error: "Failed to scrape leaderboard" }), {
