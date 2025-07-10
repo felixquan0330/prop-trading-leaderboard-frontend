@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
     });
 
     const page = await browser.newPage();
-    await page.goto("https://www.breakoutprop.com/leaderboard", {
+    await page.goto("https://portal.breakoutprop.com/app/leaderboard", {
       waitUntil: "networkidle2",
     });
 
@@ -23,8 +23,8 @@ export async function GET(req: NextRequest) {
     const data: LeaderboardItem[] = await page.evaluate(() => {
       const rows = Array.from(document.querySelectorAll(".leaderboard__row"));
       return rows.map((row) => {
-        const name = row.querySelector(".leaderboard__user-name")?.textContent?.trim() || "";
-        const profit = row.querySelector(".leaderboard__profit")?.textContent?.trim() || "";
+        const name = row.querySelector(".css-1xczk6k")?.textContent?.trim() || "";
+        const profit = row.querySelector(".css-1pi6ksg")?.textContent?.trim() || "";
         return { name, profit };
       });
     });
