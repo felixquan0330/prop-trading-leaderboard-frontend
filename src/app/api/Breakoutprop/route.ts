@@ -16,28 +16,35 @@ export async function GET(req: NextRequest) {
     const page = await browser.newPage();
 
     // 1. Go to login page
-    await page.goto("https://freetalkzone.com/login", {
+    await page.goto("https://portal.breakoutprop.com/sign-in", {
       waitUntil: "networkidle2",
     });
 
     // 2. Fill in login form
-    await page.type('input[name="email"]', "minibear955@gmail.com");
-    await page.type('input[name="password"]', "minibear2003330");
+    await page.type('input[name="email"]', "YOUR_EMAIL");
+    await page.type('input[name="password"]', "YOUR_PASSWORD");
 
-    // 3. Click login button and wait for navigation to chat page
+    // 3. Click login button and wait for navigation
     await Promise.all([
-      page.click('button[type="submit"]'), // Adjust selector as needed
+      page.click('button[type="submit"]'),
       page.waitForNavigation({ waitUntil: "networkidle2" }),
     ]);
 
-    // 4. Scrape anchor tags
-    await page.waitForSelector("a");
-    const data: LeaderboardItem[] = await page.evaluate(() => {
-      const links = Array.from(document.querySelectorAll("a"));
-      return links.map((link) => {
-        const text = link.textContent?.trim() || "";
-        const href = link.getAttribute("href") || "";
-        return { text, href };
+    // 4. Go to leaderboard page
+    await page.goto("https://portal.breakoutprop.com/app/leaderboard", {
+      waitUntil: "networkidle2",
+    });
+
+    // 5. Wait for leaderboard items to load
+    await page.waitForSelector(".MuiListItem-root", { timeout: 30000 });
+
+    // 6. Scrape leaderboard items
+    const data = await page.evaluate(() => {
+      const rows = Array.from(document.querySelectorAll(".MuiListItem-root"));
+      return rows.map((row) => {
+        const name = row.querySelector(".MuiListItemText-root")?.textContent?.trim() || "";
+        const profit = row.querySelector(".MuiListItemSecondaryAction-root")?.textContent?.trim() || "";
+        return { name, profit };
       });
     });
 
