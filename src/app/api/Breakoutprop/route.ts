@@ -24,18 +24,13 @@ export async function GET(req: NextRequest) {
     await page.type('input[name="email"]', "minibear955@gmail.com");
     await page.type('input[name="password"]', "minibear2003330");
 
-    // 3. Click login button
+    // 3. Click login button and wait for navigation to chat page
     await Promise.all([
       page.click('button[type="submit"]'), // Adjust selector as needed
       page.waitForNavigation({ waitUntil: "networkidle2" }),
     ]);
 
-    // 4. Now go to leaderboard page
-    await page.goto("https://freetalkzone.com/chat/chat-now", {
-      waitUntil: "networkidle2",
-    });
-
-    // 5. Scrape anchor tags
+    // 4. Scrape anchor tags
     await page.waitForSelector("a");
     const data: LeaderboardItem[] = await page.evaluate(() => {
       const links = Array.from(document.querySelectorAll("a"));
