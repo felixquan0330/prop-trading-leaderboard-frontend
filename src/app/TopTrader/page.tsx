@@ -28,8 +28,8 @@ export default function TopTrader() {
                 setError(null);
 
                 const [ftmoResponse, fundedxResponse, fundingpipsResponse, breakoutpropResponse] = await Promise.all([
-                    fetch(getApiUrl('/ftmo/enhanced-leaderboard')),
-                    fetch(getApiUrl('/funded-x/enhanced-leaderboard')),
+                    fetch(getApiUrl('/ftmo/leaderboard')),
+                    fetch(getApiUrl('/funded-x/leaderboard')),
                     fetch(getApiUrl('/funding-pips/leaderboard')),
                     fetch(getApiUrl('/breakoutprop/leaderboard')),
                 ]);
