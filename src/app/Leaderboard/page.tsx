@@ -20,7 +20,7 @@ export default function Leaderboard() {
 
     return (
         <div className="bg-[#050B16]">
-            <div className="max-w-[1440px] w-full mx-auto px-20 pt-24 pb-16 flex flex-col gap-6">
+            <div className="max-w-[1440px] w-full mx-auto px-20 pt-10 pb-16 flex flex-col gap-6">
                 <div className="flex flex-col gap-8">
                     <div className="flex flex-col gap-3">
                         <h6 className="text-white text-2xl font-bold text-center">Global Leaderboard</h6>

@@ -3,9 +3,9 @@ import { Badge, Button, Header } from '@/components'
 
 export default function Hero() {
     return (
-        <div className="px-20 pb-16 h-screen relative overflow-hidden bg-[#050B16]">
+        <div className="px-20 relative overflow-hidden bg-[#050B16]">
             <Header />
-            <section className="flex flex-col items-center justify-center gap-20 text-center h-full relative z-10">
+            <section className="flex flex-col items-center justify-center gap-20 text-center relative z-10 pt-24">
                 <div className="flex flex-col items-center justify-center gap-10">
                     <div className="flex flex-col gap-8">
                         <div className="text-[40px] text-white font-semibold tracking-tighter">
@@ -42,7 +42,7 @@ export default function Hero() {
                             variant="outline">
                             View GOAT Club
                         </Button>
-                        <Button className="bg-[#404040] rounded-md">
+                        <Button className="bg-white/20 border-white/10 rounded-md">
                             <span>View Leaderboard</span>
                         </Button>
                     </div>
