@@ -33,7 +33,7 @@ export const LeaderboardCard = ({
 }: LeaderboardCardProps) => {
     return (
         <div
-            className="w-full rounded-2xl p-6 bg-gradient-to-r from-[#0E1625] to-[#0B111B] border border-white/10 backdrop-blur-[12px] shadow-[0_4px_30px_0_rgba(0,0,0,0.25)] flex items-center"
+            className="w-fit rounded-2xl p-6 bg-gradient-to-r from-[#0E1625] to-[#0B111B] border border-white/10 backdrop-blur-[12px] shadow-[0_4px_30px_0_rgba(0,0,0,0.25)] flex items-center"
             style={{
                 boxShadow: '0 4px 30px 0 rgba(0,0,0,0.25), inset 0 2px 6px 0 rgba(255,255,255,0.04)'
             }}

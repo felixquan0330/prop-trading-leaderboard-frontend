@@ -27,7 +27,7 @@ export default function TopTrader() {
                 setLoading(true);
                 setError(null);
 
-                const [ftmoResponse, fundedxResponse, fundingpipsResponse, breakoutpropResponse] = await Promise.all([
+                const [ftmoResponse, fundedxResponse] = await Promise.all([
                     fetch(
                         getApiUrl('/ftmo/leaderboard'),
                         {
@@ -44,35 +44,35 @@ export default function TopTrader() {
                             mode: 'cors'
                         }
                     ),
-                    fetch(
-                        getApiUrl('/funding-pips/leaderboard'),
-                        {
-                            headers: { 'Content-Type': 'application/json' },
-                            // DO NOT use this in production
-                            mode: 'cors'
-                        }
-                    ),
-                    fetch(
-                        getApiUrl('/breakoutprop/leaderboard'),
-                        {
-                            headers: { 'Content-Type': 'application/json' },
-                            // DO NOT use this in production
-                            mode: 'cors'
-                        }
-                    ),
+                    // fetch(
+                    //     getApiUrl('/funding-pips/leaderboard'),
+                    //     {
+                    //         headers: { 'Content-Type': 'application/json' },
+                    //         // DO NOT use this in production
+                    //         mode: 'cors'
+                    //     }
+                    // ),
+                    // fetch(
+                    //     getApiUrl('/breakoutprop/leaderboard'),
+                    //     {
+                    //         headers: { 'Content-Type': 'application/json' },
+                    //         // DO NOT use this in production
+                    //         mode: 'cors'
+                    //     }
+                    // ),
                 ]);
 
-                const [ftmoData, fundedxData, fundingpipsData, breakoutpropData] = await Promise.all([
+                const [ftmoData, fundedxData] = await Promise.all([
                     ftmoResponse.json(),
                     fundedxResponse.json(),
-                    fundingpipsResponse.json(),
-                    breakoutpropResponse.json()
+                    // fundingpipsResponse.json(),
+                    // breakoutpropResponse.json()
                 ]);
 
                 setFtmoData(ftmoData);
                 setFundedxData(fundedxData);
-                setFundingpipsData(fundingpipsData);
-                setBreakoutpropData(breakoutpropData);
+                // setFundingpipsData(fundingpipsData);
+                // setBreakoutpropData(breakoutpropData);
             } catch (err) {
                 setError('Failed to fetch data');
                 console.error('Error fetching data:', err);
@@ -227,7 +227,7 @@ export default function TopTrader() {
                                                 </Td>
                                             </TableRow>
                                         ) : sortDataByProfit(ftmoData, ftmoSort)?.map((trader: any, index: number) => {
-                                            const FlagComponent = getCountryFlag(trader.countryCode)
+                                            const FlagComponent = getCountryFlag(trader.country)
                                             return (
                                                 <TableRow key={index}>
                                                     <Td>{trader.rank}</Td>
@@ -253,9 +253,8 @@ export default function TopTrader() {
                                                     </Td>
                                                     <Td>
                                                         <div className="flex flex-wrap gap-2 justify-center">
-                                                            {trader.badges.map((badge: string, i: number) => (
-                                                                <Badge key={i}>{badge}</Badge>
-                                                            ))}
+                                                            <Badge>🔥 Profit Streak</Badge>
+                                                            <Badge>🏆 Top Gun</Badge>
                                                         </div>
                                                     </Td>
                                                 </TableRow>
@@ -320,7 +319,7 @@ export default function TopTrader() {
                                                 </Td>
                                             </TableRow>
                                         ) : sortDataByProfit(fundedxData, fundedxSort)?.map((trader: any, index: number) => {
-                                            const FlagComponent = getCountryFlag(trader.countryCode)
+                                            const FlagComponent = getCountryFlag(trader.country)
                                             return (
                                                 <TableRow key={index}>
                                                     <Td>{trader.rank}</Td>
@@ -346,9 +345,8 @@ export default function TopTrader() {
                                                     </Td>
                                                     <Td>
                                                         <div className="flex flex-wrap gap-2 justify-center">
-                                                            {trader.badges.map((badge: string, i: number) => (
-                                                                <Badge key={i}>{badge}</Badge>
-                                                            ))}
+                                                            <Badge>🔥 Profit Streak</Badge>
+                                                            <Badge>🏆 Top Gun</Badge>
                                                         </div>
                                                     </Td>
                                                 </TableRow>
@@ -358,7 +356,7 @@ export default function TopTrader() {
                                 </Table>
                             </div>
                         </div>
-                        <div className='flex flex-col gap-4'>
+                        {/*<div className='flex flex-col gap-4'>
                             <div className='flex justify-between items-center'>
                                 <div className='flex items-center gap-2'>
                                     <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
@@ -543,7 +541,7 @@ export default function TopTrader() {
                                     </TableBody>
                                 </Table>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
