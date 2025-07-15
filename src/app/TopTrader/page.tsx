@@ -28,10 +28,38 @@ export default function TopTrader() {
                 setError(null);
 
                 const [ftmoResponse, fundedxResponse, fundingpipsResponse, breakoutpropResponse] = await Promise.all([
-                    fetch(getApiUrl('/ftmo/leaderboard')),
-                    fetch(getApiUrl('/funded-x/leaderboard')),
-                    fetch(getApiUrl('/funding-pips/leaderboard')),
-                    fetch(getApiUrl('/breakoutprop/leaderboard')),
+                    fetch(
+                        getApiUrl('/ftmo/leaderboard'),
+                        {
+                            headers: { 'Content-Type': 'application/json' },
+                            // DO NOT use this in production
+                            mode: 'cors'
+                        }
+                    ),
+                    fetch(
+                        getApiUrl('/funded-x/leaderboard'),
+                        {
+                            headers: { 'Content-Type': 'application/json' },
+                            // DO NOT use this in production
+                            mode: 'cors'
+                        }
+                    ),
+                    fetch(
+                        getApiUrl('/funding-pips/leaderboard'),
+                        {
+                            headers: { 'Content-Type': 'application/json' },
+                            // DO NOT use this in production
+                            mode: 'cors'
+                        }
+                    ),
+                    fetch(
+                        getApiUrl('/breakoutprop/leaderboard'),
+                        {
+                            headers: { 'Content-Type': 'application/json' },
+                            // DO NOT use this in production
+                            mode: 'cors'
+                        }
+                    ),
                 ]);
 
                 const [ftmoData, fundedxData, fundingpipsData, breakoutpropData] = await Promise.all([
