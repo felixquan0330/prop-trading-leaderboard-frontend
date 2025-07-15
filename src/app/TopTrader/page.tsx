@@ -206,7 +206,7 @@ export default function TopTrader() {
                                                     <Td>
                                                         <div className="flex items-center gap-2">
                                                             <img
-                                                                src="/user-default-dark.png"
+                                                                src="/avatar/user-default-dark.png"
                                                                 alt="top-trader"
                                                                 className="w-6 h-6 rounded-full"
                                                             />
@@ -299,7 +299,7 @@ export default function TopTrader() {
                                                     <Td>
                                                         <div className="flex items-center gap-2">
                                                             <img
-                                                                src="/user-default-dark.png"
+                                                                src="/avatar/user-default-dark.png"
                                                                 alt="top-trader"
                                                                 className="w-6 h-6 rounded-full"
                                                             />
@@ -485,7 +485,7 @@ export default function TopTrader() {
                                                     <Td>
                                                         <div className="flex items-center gap-2">
                                                             <img
-                                                                src="/user-default-dark.png"
+                                                                src="/avatar/user-default-dark.png"
                                                                 alt="top-trader"
                                                                 className="w-6 h-6 rounded-full"
                                                             />
