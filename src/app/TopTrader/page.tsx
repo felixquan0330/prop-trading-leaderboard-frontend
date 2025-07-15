@@ -4,6 +4,7 @@ import { Badge, Switch, List, Grid } from '@/components';
 import { Table, TableHeader, TableBody, TableRow, Th, Td } from '@/components';
 import { Discount, Check, SortUp, SortDown } from '@/components';
 import { getCountryFlag } from '@/utils/countryFlags';
+import { getApiUrl, API_CONFIG } from '@/utils/config';
 
 export default function TopTrader() {
     const [selected, setSelected] = useState<'list' | 'grid'>('list');
@@ -27,10 +28,10 @@ export default function TopTrader() {
                 setError(null);
 
                 const [ftmoResponse, fundedxResponse, fundingpipsResponse, breakoutpropResponse] = await Promise.all([
-                    fetch('/api/FTMO'),
-                    fetch('/api/MyFundedFX'),
-                    fetch('/api/FundingPips'),
-                    fetch('/api/Breakoutprop'),
+                    fetch(getApiUrl('/ftmo/enhanced-leaderboard')),
+                    fetch(getApiUrl('/funded-x/enhanced-leaderboard')),
+                    fetch(getApiUrl('/funding-pips/leaderboard')),
+                    fetch(getApiUrl('/breakoutprop/leaderboard')),
                 ]);
 
                 const [ftmoData, fundedxData, fundingpipsData, breakoutpropData] = await Promise.all([
@@ -52,19 +53,10 @@ export default function TopTrader() {
             }
         }
 
-
-        // fetchData()
+        fetchData()
     }, [])
 
-    useEffect(() => {
-        fetch("/api/Breakoutprop")
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                setBreakoutpropData(data);
-            })
-            .catch(console.error);
-    }, []);
+
 
     const handleSwitch = (value: 'list' | 'grid') => {
         setSelected(value)
@@ -206,7 +198,7 @@ export default function TopTrader() {
                                                     Error: {error}
                                                 </Td>
                                             </TableRow>
-                                        ) : sortDataByProfit(ftmoData?.global, ftmoSort)?.map((trader: any, index: number) => {
+                                        ) : sortDataByProfit(ftmoData, ftmoSort)?.map((trader: any, index: number) => {
                                             const FlagComponent = getCountryFlag(trader.countryCode)
                                             return (
                                                 <TableRow key={index}>
@@ -229,7 +221,7 @@ export default function TopTrader() {
                                                         </div>
                                                     </Td>
                                                     <Td className="flex justify-center">
-                                                        <div className="bg-[#275130] border-none rounded-md px-2 py-1 text-sm w-fit">{trader.pnl}</div>
+                                                        <div className="bg-[#275130] border-none rounded-md px-2 py-1 text-sm w-fit">{trader.pnl || `+$${trader.profit?.toLocaleString() || 0}`}</div>
                                                     </Td>
                                                     <Td>
                                                         <div className="flex flex-wrap gap-2 justify-center">
@@ -299,7 +291,7 @@ export default function TopTrader() {
                                                     Error: {error}
                                                 </Td>
                                             </TableRow>
-                                        ) : sortDataByProfit(fundedxData?.global, fundedxSort)?.map((trader: any, index: number) => {
+                                        ) : sortDataByProfit(fundedxData, fundedxSort)?.map((trader: any, index: number) => {
                                             const FlagComponent = getCountryFlag(trader.countryCode)
                                             return (
                                                 <TableRow key={index}>
@@ -322,7 +314,7 @@ export default function TopTrader() {
                                                         </div>
                                                     </Td>
                                                     <Td className="flex justify-center">
-                                                        <div className="bg-[#275130] border-none rounded-md px-2 py-1 text-sm w-fit">{trader.pnl}</div>
+                                                        <div className="bg-[#275130] border-none rounded-md px-2 py-1 text-sm w-fit">{trader.pnl || `+$${trader.profit?.toLocaleString() || 0}`}</div>
                                                     </Td>
                                                     <Td>
                                                         <div className="flex flex-wrap gap-2 justify-center">
@@ -392,7 +384,7 @@ export default function TopTrader() {
                                                     Error: {error}
                                                 </Td>
                                             </TableRow>
-                                        ) : sortDataByProfit(fundingpipsData?.bestTrades, fundingpipsSort)?.map((trader: any, index: number) => {
+                                        ) : sortDataByProfit(fundingpipsData, fundingpipsSort)?.map((trader: any, index: number) => {
                                             const FlagComponent = getCountryFlag(trader.countryCode)
                                             return (
                                                 <TableRow key={index}>
@@ -415,7 +407,7 @@ export default function TopTrader() {
                                                         </div>
                                                     </Td>
                                                     <Td className="flex justify-center">
-                                                        <div className="bg-[#275130] border-none rounded-md px-2 py-1 text-sm w-fit">{trader.pnl}</div>
+                                                        <div className="bg-[#275130] border-none rounded-md px-2 py-1 text-sm w-fit">{trader.pnl || `+$${trader.profit?.toLocaleString() || 0}`}</div>
                                                     </Td>
                                                     <Td>
                                                         <div className="flex flex-wrap gap-2 justify-center">
@@ -485,7 +477,7 @@ export default function TopTrader() {
                                                     Error: {error}
                                                 </Td>
                                             </TableRow>
-                                        ) : sortDataByProfit(breakoutpropData?.global, breakoutpropSort)?.map((trader: any, index: number) => {
+                                        ) : sortDataByProfit(breakoutpropData, breakoutpropSort)?.map((trader: any, index: number) => {
                                             const FlagComponent = getCountryFlag(trader.countryCode)
                                             return (
                                                 <TableRow key={index}>
@@ -508,7 +500,7 @@ export default function TopTrader() {
                                                         </div>
                                                     </Td>
                                                     <Td className="flex justify-center">
-                                                        <div className="bg-[#275130] border-none rounded-md px-2 py-1 text-sm w-fit">{trader.pnl}</div>
+                                                        <div className="bg-[#275130] border-none rounded-md px-2 py-1 text-sm w-fit">{trader.pnl || `+$${trader.profit?.toLocaleString() || 0}`}</div>
                                                     </Td>
                                                     <Td>
                                                         <div className="flex flex-wrap gap-2 justify-center">

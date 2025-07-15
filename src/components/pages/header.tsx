@@ -23,8 +23,7 @@ export const Header = () => {
                 </nav>
             </div>
             <Button
-                className="border-[#3F3F3F] bg-transparent hover:bg-[#3F3F3F] text-white rounded-md
-                            bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4] border-none hover:opacity-90"
+                className="bg-gradient-to-r from-[#22D3EE] via-[#3B82F6] to-[#1E3A8A] text-white rounded-md px-4 py-2 border-none shadow-none hover:opacity-90 transition"
                 variant="outline">
                 Login
             </Button>
