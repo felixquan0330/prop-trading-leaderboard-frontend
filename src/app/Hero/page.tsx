@@ -3,7 +3,7 @@ import { Badge, Button, Header } from '@/components'
 
 export default function Hero() {
     return (
-        <div className="px-20 relative overflow-hidden bg-[#050B16]">
+        <div className="px-20 relative overflow-hidden">
             <Header />
             <section className="flex flex-col items-center justify-center gap-20 text-center relative z-10 pt-24">
                 <div className="flex flex-col items-center justify-center gap-10">
