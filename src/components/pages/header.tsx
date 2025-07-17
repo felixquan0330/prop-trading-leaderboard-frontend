@@ -2,7 +2,7 @@ import { Button } from "@/components/component/button"
 
 export const Header = () => {
     return (
-        <header className="max-w-[1440px] w-full mx-auto h-[72px] flex items-center justify-between">
+        <header className="max-w-[1440px] w-full mx-auto h-[72px] flex items-center justify-between z-20">
             <div className="">
                 <img src="/logo.jpg" alt="logo" width={48} height={48} />
             </div>

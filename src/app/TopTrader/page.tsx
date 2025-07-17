@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { Badge, Switch, List, Grid } from '@/components';
 import { Table, TableHeader, TableBody, TableRow, Th, Td } from '@/components';
 import { Discount, Check, SortUp, SortDown } from '@/components';
-import { getCountryFlag } from '@/utils/countryFlags';
-import { getApiUrl, API_CONFIG } from '@/utils/config';
+import { getCountryFlag } from '@/lib/countryFlags';
+import { getApiUrl } from '@/lib/config';
 
 export default function TopTrader() {
     const [selected, setSelected] = useState<'list' | 'grid'>('list');

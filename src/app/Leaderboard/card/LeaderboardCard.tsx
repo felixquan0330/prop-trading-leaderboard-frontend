@@ -1,6 +1,5 @@
 import { ProfitCard } from './ProfitCard'
 import { TraderCard } from './TraderCard'
-import { Button } from '@/components'
 
 interface LeaderboardCardProps {
     avatarUrl: string;
