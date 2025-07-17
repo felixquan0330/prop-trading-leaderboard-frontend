@@ -4,7 +4,7 @@ export const Header = () => {
     return (
         <header className="max-w-[1440px] w-full mx-auto h-[72px] flex items-center justify-between">
             <div className="">
-                <img src="/logo.png" alt="logo" width={48} height={48} />
+                <img src="/logo.jpg" alt="logo" width={48} height={48} />
             </div>
             <div className="flex items-center space-x-8">
                 <nav className="hidden md:flex space-x-6">

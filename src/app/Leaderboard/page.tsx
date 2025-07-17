@@ -23,7 +23,7 @@ export default function Leaderboard() {
             <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-3">
                     <h6 className="text-white text-2xl font-bold text-center">Global Leaderboard</h6>
-                    <p className="text-white text-center text-md font-medium opacity-70">
+                    <p className="text-white/75 text-center text-md font-medium">
                         See how the world's top traders stack up across all supported prop firms.
                     </p>
                 </div>

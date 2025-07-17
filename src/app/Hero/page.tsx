@@ -5,35 +5,15 @@ export default function Hero() {
     return (
         <div className="px-20 relative overflow-hidden">
             <Header />
-            <section className="flex flex-col items-center justify-center gap-20 text-center relative z-10 pt-24">
+            <section className="flex flex-col items-center justify-center gap-20 text-center relative z-10 py-24">
                 <div className="flex flex-col items-center justify-center gap-10">
-                    <div className="flex flex-col gap-8">
+                    <div className="flex flex-col gap-4">
                         <div className="text-[40px] text-white font-semibold tracking-tighter">
-                            The Ultimate Leaderboard for Prop Traders
+                            THE #1 LEADERBOARD FOR PROP TRADERS WORLDWIDE <br />
+                            WORLDWIDE
                         </div>
-                        <div className="text-white text-[22px] font-semibold tracking-normal">
-                            Track performance across top firms. Live rankings, win rates, badges and more.
-                        </div>
-                        <div className="
-                            relative p-[1px] rounded-2xl
-                            bg-gradient-to-r from-[#22D3EE] via-[#3B82F6] to-[#1E3A8A]
-                            shadow-[0_4px_30px_1px_rgba(34,211,238,0.33)]
-                        ">
-                            <div className="
-                                rounded-2xl h-[192px] flex flex-col items-center justify-center gap-3
-                                bg-gradient-to-r from-[#18345C] to-[#1E223A]
-                                text-[22px] text-white
-                                px-8
-                            ">
-                                <div className="font-semibold">Verified Data You Can Trust</div>
-                                <div className='text-[15px] text-white'>
-                                    Tracked, ranked, and updated daily from real prop trading data.
-                                </div>
-                                <div className='flex items-center gap-3'>
-                                    <Badge>✅ Accurate & Verified</Badge>
-                                    <Badge>🔎 Proof-Driven Results</Badge>
-                                </div>
-                            </div>
+                        <div className="text-white/75 text-[18px] tracking-normal">
+                            See who’s winning across top firms — in real time.
                         </div>
                     </div>
                     <div className="flex gap-4">
