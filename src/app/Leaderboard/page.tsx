@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { LeaderboardCard } from './card/LeaderboardCard';
-import { Badge, Button, Switch, Table, TableHeader, TableBody, TableRow, Th, Td, Filter, Popular, Favourite, New, Global, Crown, Cross, Check } from '@/components';
+import { Button, Switch, Filter, Popular, Favourite, New, Global, Crown, Cross } from '@/components';
 import { leaderboardData } from '@/data/leaderboardData';
 
 export default function Leaderboard() {
@@ -101,12 +101,11 @@ export default function Leaderboard() {
                         </div>
                     </div>
 
-                    <div className="flex text-white/75 text-sm px-6">
-                        <span className='w-[50px] text-center'>Rank</span>
-                        <span className='w-[300px] text-center'>Trader</span>
-                        <span className='w-[200px] text-center'>Firm</span>
-                        <span className='w-[300px] text-center'>Profit</span>
-                        <span className='w-[300px] text-center'>Badges</span>
+                    <div className="grid grid-cols-[1fr_2fr_3fr_2fr] text-white/75 text-sm px-6">
+                        <div className="p-4">Rank</div>
+                        <div className="p-4 text-center">Trader</div>
+                        <div className="p-4 text-center">Firm</div>
+                        <div className="p-4 text-center">Profit</div>
                     </div>
                     {
                         leaderboardData.map((data, index) => (

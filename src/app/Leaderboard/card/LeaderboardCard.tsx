@@ -33,16 +33,23 @@ export const LeaderboardCard = ({
 }: LeaderboardCardProps) => {
     return (
         <div
-            className="w-fit rounded-2xl p-6 bg-gradient-to-r from-[#0E1625] to-[#0B111B] border border-white/10 backdrop-blur-[12px] shadow-[0_4px_30px_0_rgba(0,0,0,0.25)] flex items-center"
-            style={{
-                boxShadow: '0 4px 30px 0 rgba(0,0,0,0.25), inset 0 2px 6px 0 rgba(255,255,255,0.04)'
-            }}
+                        className={`w-full rounded-2xl px-8 py-6 bg-gradient-to-r from-[#0E1625] to-[#0B111B] backdrop-blur-[12px] flex justify-between items-center border border-white/10 ${
+                rank === 1 
+                    ? 'shadow-[0_0px_12px_0px_rgba(255,215,0,0.5),0_4px_30px_0_rgba(0,0,0,0.25),inset_0_2px_8px_0_rgba(255,250,205,0.3)]' 
+                    : rank === 2
+                    ? 'shadow-[0_0px_12px_0px_rgba(192,192,192,0.75),0_4px_30px_0_rgba(0,0,0,0.25),inset_0_2px_6px_0_rgba(255,255,255,0.04)]'
+                    : rank === 3
+                    ? 'shadow-[0_0px_12px_0px_rgba(205,127,50,0.75),0_4px_30px_0_rgba(0,0,0,0.25),inset_0_2px_6px_0_rgba(255,255,255,0.04)]'
+                    : 'shadow-[0_4px_30px_0_rgba(0,0,0,0.25),inset_0_2px_6px_0_rgba(255,255,255,0.04)]'
+            }`}
         >
-            <div className="text-[#FFFFFFBF] items-center justify-center text-base flex items-center gap-2 min-w-[50px]">
+            <div className={`text-[#FFFFFFBF] items-center justify-center flex items-center gap-2 p-4 ${
+                rank === 1 || rank === 2 || rank === 3 ? 'text-xl' : 'text-base'
+            }`}>
                 {
-                    rank === 1 ? <img src={"/medal/gold.png"} alt="1" className="w-4 h-4" /> :
-                        rank === 2 ? <img src={"/medal/silver.png"} alt="2" className="w-4 h-4" /> :
-                            rank === 3 ? <img src={"/medal/bronze.png"} alt="3" className="w-4 h-4" /> :
+                    rank === 1 ? <img src={"/medal/gold.png"} alt="1" className="w-8 h-6" /> :
+                        rank === 2 ? <img src={"/medal/silver.png"} alt="2" className="w-8 h-6" /> :
+                            rank === 3 ? <img src={"/medal/bronze.png"} alt="3" className="w-8 h-6" /> :
                                 ""
                 }
                 #{rank}
@@ -65,34 +72,6 @@ export const LeaderboardCard = ({
 
             <div className="flex items-center justify-center min-w-[300px] max-w-[300px]">
                 <ProfitCard currentProfit={currentProfit} targetProfit={targetProfit} />
-            </div>
-
-            {/* Right: Badges and More */}
-            <div className="flex flex-col items-center justify-center gap-3 min-w-[300px] max-w-[300px]">
-                {
-                    badges.map((badge, index) => (
-                        <div key={index} className="relative p-[1px]">
-                            <span className="bg-white/10 text-white text-xs px-3 py-1 rounded-full flex items-center gap-1 border border-[1px] border-[#FFFFFF33]">
-                                {badge.icon} {badge.name}
-                            </span>
-                        </div>
-                    ))
-                }
-            </div>
-            <div
-                className="
-                    p-[1px] rounded-md
-                    bg-gradient-to-r from-[#22D3EE] via-[#3B82F6] to-[#1E3A8A]"
-            >
-                <Button
-                    className="
-                        rounded-md
-                        bg-gradient-to-r from-[#0E1625] to-[#0B111B]
-                        px-2 py-1 w-full
-                    "
-                >
-                    More
-                </Button>
             </div>
         </div>
     )

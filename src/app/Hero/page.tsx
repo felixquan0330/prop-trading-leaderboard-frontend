@@ -9,7 +9,7 @@ export default function Hero() {
                 <div className="flex flex-col items-center justify-center gap-10">
                     <div className="flex flex-col gap-4">
                         <div className="text-[40px] text-white font-semibold tracking-tighter">
-                            THE #1 LEADERBOARD FOR PROP TRADERS WORLDWIDE <br />
+                            THE #1 LEADERBOARD FOR PROP TRADERS <br />
                             WORLDWIDE
                         </div>
                         <div className="text-white/75 text-[18px] tracking-normal">
