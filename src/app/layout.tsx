@@ -1,11 +1,11 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Onest } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const onest = Onest({
+  variable: "--font-onest",
   subsets: ["latin"],
 });
 
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} antialiased bg-black text-white tracking-[0.02em] bg-[#050B16]`}>
+      <body className={`${onest.variable} antialiased bg-black text-white tracking-[0.02em] bg-[#050B16]`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           {children}
         </ThemeProvider>
