@@ -1,4 +1,4 @@
-import { US, FR, GB, DE, IT, TW, CH, CA, PL, BR, AT, ZA, TR, NL, QA, KE, IN, JM, UZ, SE, AF, ES, DZ, CO, KZ, DO, CN } from 'country-flag-icons/react/3x2';
+import { US, FR, GB, DE, IT, TW, CH, CA, PL, BR, AT, ZA, TR, NL, QA, KE, IN, JM, UZ, SE, AF, ES, DZ, CO, KZ, DO, CN, CG, MA, BG } from 'country-flag-icons/react/3x2';
 
 export const countryFlagMap: { [key: string]: any } = {
   'US': US,
@@ -60,6 +60,12 @@ export const countryFlagMap: { [key: string]: any } = {
   'DO': DO,
   'Dominican Republic': DO,
   'China': CN,
+  'CG': CG,
+  'Congo': CG,
+  'MA': MA,
+  'Morocco': MA,
+  'BG': BG,
+  'Bulgaria': BG,
 };
 
 export const getCountryFlag = (countryCode: string) => {
