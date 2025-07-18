@@ -112,15 +112,18 @@ export const WavyBackground = ({
     return (
         <div
             className={cn(
-                "flex flex-col items-center justify-center",
+                "relative flex flex-col items-center justify-center",
                 containerClassName
             )}
         >
             <canvas
-                className="absolute inset-0 z-0"
+                className="absolute z-0"
                 ref={canvasRef}
                 id="canvas"
                 style={{
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
                     ...(isSafari ? { filter: `blur(${blur}px)` } : {}),
                 }}
             ></canvas>

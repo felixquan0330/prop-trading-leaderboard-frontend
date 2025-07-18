@@ -4,10 +4,10 @@ import { WavyBackground } from "./component/wave-background";
 
 export default function Hero() {
     return (
-        <div className="relative overflow-hidden min-h-screen flex flex-col">
+        <div className="relative overflow-hidden flex flex-col px-20">
             <Header />
             <WavyBackground className="flex-1 flex flex-col justify-center items-center w-full">
-                <section className="flex flex-col items-center justify-center gap-20 text-center relative z-10 min-h-screen w-full">
+                <section className="flex flex-col items-center justify-center gap-20 text-center relative z-10 w-full py-24">
                     <div className="flex flex-col items-center justify-center gap-10">
                         <div className="flex flex-col gap-4">
                             <div className="text-[40px] text-white font-semibold tracking-tighter">
