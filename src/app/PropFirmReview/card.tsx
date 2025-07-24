@@ -1,6 +1,6 @@
 import React from 'react';
 import { Calendar, Weekend, FireWall, Dollar, ActiveRating, InactiveRating } from '@/components/component/icons';
-
+import { Button } from '@/components';
 interface PropFirmCardProps {
     logoUrl?: string;
     name: string;
@@ -24,7 +24,7 @@ export const PropFirmCard: React.FC<PropFirmCardProps> = ({
 }) => {
     return (
         <div
-          className="rounded-2xl p-6 flex flex-col justify-between gap-3 w-full min-h-[320px] border border-[rgba(255,255,255,0.1)] bg-[linear-gradient(180deg,_#0E1625_0%,_#0B111B_100%)] backdrop-blur-[12px] shadow-[0_4px_30px_rgba(0,0,0,0.25)]"
+            className="rounded-2xl p-6 flex flex-col justify-between gap-3 w-full min-h-[320px] border border-[rgba(255,255,255,0.1)] bg-[linear-gradient(180deg,_#0E1625_0%,_#0B111B_100%)] backdrop-blur-[12px] shadow-[0_4px_30px_rgba(0,0,0,0.25)]"
         >
             <div className="flex justify-between">
                 <div className="flex items-center gap-2">
@@ -57,7 +57,7 @@ export const PropFirmCard: React.FC<PropFirmCardProps> = ({
                 </div>
             </div>
             <hr className="my-2 text-[#3F3F3F]" />
-            <div className="flex flex-col gap-2 text-sm text-white opacity-70">
+            <div className="flex flex-col gap-2 text-sm text-white">
                 <div className="flex items-center gap-2">
                     <FireWall />
                     <span>Max Drawdown: <span className="font-bold">{maxDrawdown}</span></span>
@@ -78,6 +78,13 @@ export const PropFirmCard: React.FC<PropFirmCardProps> = ({
                         <span>Payouts: <span className="font-bold">{payouts}</span></span>
                     </div>
                 )}
+            </div>
+            <div className="flex justify-center">
+                <Button
+                    className="bg-gradient-to-r from-[#22D3EE] via-[#3B82F6] to-[#1E3A8A] rounded-xl px-4 py-2 border-none shadow-none hover:opacity-90 transition w-fit"
+                    variant="outline">
+                    See more
+                </Button>
             </div>
         </div>
     );

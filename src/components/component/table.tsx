@@ -21,7 +21,7 @@ export const TableBody = ({ children, className = '' }: { children: React.ReactN
 );
 
 export const TableRow = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
-    <tr className={`hover:bg-[#252525] border-b border-white/10 ${className}`}>
+    <tr className={`hover:bg-[#252525] ${className}`}>
         {children}
     </tr>
 );
@@ -33,7 +33,7 @@ export const Th = ({ children, className = '', ...props }: { children: React.Rea
 );
 
 export const Td = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
-    <td className={`p-4 text-center w-1/3 ${className}`}>
+    <td className={`p-4 text-center border-b-2 border-white/10 w-1/3 ${className}`}>
         {children}
     </td>
 );
