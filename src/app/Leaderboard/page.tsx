@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import { LeaderboardCard } from './card/LeaderboardCard';
+import { LeaderboardCard } from '@/components/component/card/LeaderboardCard';
 import { Button, Switch, Filter, Popular, Favourite, New, Global, Crown, Cross } from '@/components';
 import { leaderboardData } from '@/data/leaderboardData';
 

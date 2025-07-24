@@ -117,7 +117,7 @@ const propFirmsData = [
 export default function PropFirmReview() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
-    const cardsPerSlide = 3;
+    const cardsPerSlide = 4;
     const totalSlides = Math.ceil(propFirmsData.length / cardsPerSlide);
 
     const nextSlide = () => {
@@ -186,7 +186,7 @@ export default function PropFirmReview() {
                                 {Array.from({ length: totalSlides }, (_, slideIndex) => (
                                     <div key={slideIndex} className="w-full flex gap-6">
                                         {propFirmsData.slice(slideIndex * cardsPerSlide, (slideIndex + 1) * cardsPerSlide).map((firm, index) => (
-                                            <div key={`${slideIndex}-${index}`} className="w-1/3">
+                                            <div key={`${slideIndex}-${index}`} className="w-1/4">
                                                 <PropFirmCard
                                                     name={firm.name}
                                                     rating={firm.rating}

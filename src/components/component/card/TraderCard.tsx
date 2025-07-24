@@ -1,6 +1,5 @@
 import { Check } from '@/components';
 import { US, FR, GB, JP, AU, SA, CA, IT, IN, NZ } from 'country-flag-icons/react/3x2';
-import { findFlagUrlByNationality } from "country-flags-svg";
 
 interface TraderCardProps {
     avatarUrl: string;
@@ -8,7 +7,6 @@ interface TraderCardProps {
     country: 'US' | 'FR' | 'GB' | 'JP' | 'AU' | 'SA' | 'CA' | 'IT' | 'IN' | 'NZ';
     isVerified?: boolean;
     className?: string;
-    subtitle: string;
 }
 
 export const TraderCard = ({ 
@@ -16,8 +14,7 @@ export const TraderCard = ({
     userid, 
     country, 
     isVerified = false, 
-    className = "",
-    subtitle
+    className = ""
 }: TraderCardProps) => {
     const getCountryFlag = (countryCode: string) => {
         const flagComponents: { [key: string]: React.ComponentType<any> } = {
@@ -29,8 +26,7 @@ export const TraderCard = ({
     };
 
     return (
-        <div className={`flex items-center gap-2 ${className}`}>
-            {/* Avatar with country flag overlay */}
+        <div className={`flex items-center gap-2 w-fit mx-auto ${className}`}>
             <div className="relative">
                 <img 
                     src={avatarUrl} 
@@ -44,7 +40,6 @@ export const TraderCard = ({
                 </div>
             </div>
             
-            {/* Username and verification badge */}
             <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
                     <span className="text-white font-bold text-lg truncate">{userid}</span>
@@ -52,7 +47,6 @@ export const TraderCard = ({
                         <Check className="w-4 h-4 text-blue-500" />
                     )}
                 </div>
-                <div className="text-xs text-gray-400 uppercase tracking-wide">{subtitle}</div>
             </div>
         </div>
     );

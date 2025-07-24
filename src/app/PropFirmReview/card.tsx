@@ -23,7 +23,9 @@ export const PropFirmCard: React.FC<PropFirmCardProps> = ({
     payouts,
 }) => {
     return (
-        <div className="bg-[#282828] rounded-2xl p-6 flex flex-col gap-3 w-full border border-[#3F3F3F]">
+        <div
+          className="rounded-2xl p-6 flex flex-col justify-between gap-3 w-full min-h-[320px] border border-[rgba(255,255,255,0.1)] bg-[linear-gradient(180deg,_#0E1625_0%,_#0B111B_100%)] backdrop-blur-[12px] shadow-[0_4px_30px_rgba(0,0,0,0.25)]"
+        >
             <div className="flex justify-between">
                 <div className="flex items-center gap-2">
                     <img

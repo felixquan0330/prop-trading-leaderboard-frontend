@@ -27,7 +27,6 @@ export const LeaderboardCard = ({
     currentProfit,
     targetProfit,
     rank,
-    subtitle,
     badges,
 }: LeaderboardCardProps) => {
     return (
@@ -59,7 +58,6 @@ export const LeaderboardCard = ({
                     userid={userid}
                     country={country}
                     isVerified={isVerified}
-                    subtitle={subtitle}
                 />
             </div>
 

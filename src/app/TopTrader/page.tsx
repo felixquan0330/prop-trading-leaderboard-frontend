@@ -1,10 +1,8 @@
 "use client"
 import { useState, useEffect } from 'react';
-import { Badge, Switch, List, Grid } from '@/components';
-import { Table, TableHeader, TableBody, TableRow, Th, Td } from '@/components';
-import { Discount, Check, SortUp, SortDown } from '@/components';
-import { getCountryFlag } from '@/lib/countryFlags';
+import { Switch, List, Grid } from '@/components';
 import { getApiUrl } from '@/lib/config';
+import { TopTraderTable } from '@/app/TopTrader/TopTraderTable';
 
 export default function TopTrader() {
     const [selected, setSelected] = useState<'list' | 'grid'>('list');
@@ -172,374 +170,46 @@ export default function TopTrader() {
                         </div>
                     </div>
                     <div className='flex flex-col gap-12'>
-                        <div className='flex flex-col gap-4'>
-                            <div className='flex justify-between items-center'>
-                                <div className='flex items-center gap-2'>
-                                    <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
-                                    <span className='text-white font-semibold'>FTMO</span>
-                                    <div className="
-                                        p-[1px] rounded-full
-                                        border-none
-                                        bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4]
-                                    ">
-                                        <button className="
-                                            flex flex-row items-center gap-1 px-2 py-1 rounded-full
-                                            bg-[#282828] text-white hover:bg-[#3F3F3F] transition text-sm w-full
-                                            border-none
-                                        ">
-                                            <Discount className="w-4 h-4" />
-                                            Discount Offer
-                                        </button>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span className='text-white text-sm font-semibold'>View Full Leaderboard</span>
-                                </div>
-                            </div>
-                            <div className='flex flex-col gap-8'>
-                                <Table>
-                                    <TableHeader >
-                                        <Th
-                                            className="flex items-center justify-center gap-2 hover:cursor-pointer"
-                                            onClick={handleFtmoSort}
-                                        >
-                                            RANK {ftmoSort === 'desc' ? <SortUp className="w-4 h-4" /> : <SortDown className="w-4 h-4" />}
-                                        </Th>
-                                        <Th>USERNAME</Th>
-                                        <Th>COUNTRY</Th>
-                                        <Th>PROFIT</Th>
-                                        <Th>BADGES</Th>
-                                    </TableHeader>
-                                    <TableBody>
-                                        {loading ? (
-                                            <TableRow>
-                                                <Td className="text-center py-8">
-                                                    <div className="flex items-center justify-center">
-                                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                                                        <span className="ml-2">Loading FTMO data...</span>
-                                                    </div>
-                                                </Td>
-                                            </TableRow>
-                                        ) : error ? (
-                                            <TableRow>
-                                                <Td className="text-center py-8 text-red-500">
-                                                    Error: {error}
-                                                </Td>
-                                            </TableRow>
-                                        ) : sortDataByProfit(ftmoData, ftmoSort)?.map((trader: any, index: number) => {
-                                            const FlagComponent = getCountryFlag(trader.country)
-                                            return (
-                                                <TableRow key={index}>
-                                                    <Td>{trader.rank}</Td>
-                                                    <Td>
-                                                        <div className="flex items-center gap-2">
-                                                            <img
-                                                                src="/avatar/user-default-dark.png"
-                                                                alt="top-trader"
-                                                                className="w-6 h-6 rounded-full"
-                                                            />
-                                                            <span className="font-semibold">{trader.username}</span>
-                                                            {trader.verified && <Check className="w-4 h-4" />}
-                                                        </div>
-                                                    </Td>
-                                                    <Td>
-                                                        <div className="flex items-center justify-center gap-2">
-                                                            {FlagComponent && <FlagComponent title={trader.country} className="w-4 h-4" />}
-                                                            <span className="text-white opacity-70">{trader.country}</span>
-                                                        </div>
-                                                    </Td>
-                                                    <Td className="flex justify-center">
-                                                        <div className="bg-[#275130] border-none rounded-md px-2 py-1 text-sm w-fit">{trader.pnl || `+$${trader.profit?.toLocaleString() || 0}`}</div>
-                                                    </Td>
-                                                    <Td>
-                                                        <div className="flex flex-wrap gap-2 justify-center">
-                                                            <Badge>🔥 Profit Streak</Badge>
-                                                            <Badge>🏆 Top Gun</Badge>
-                                                        </div>
-                                                    </Td>
-                                                </TableRow>
-                                            )
-                                        })}
-                                    </TableBody>
-                                </Table>
-                            </div>
-                        </div>
-                        <div className='flex flex-col gap-4'>
-                            <div className='flex justify-between items-center'>
-                                <div className='flex items-center gap-2'>
-                                    <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
-                                    <span className='text-white font-semibold'>FundedX</span>
-                                    <div className="
-                                        p-[1px] rounded-full
-                                        border-none
-                                        bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4]
-                                    ">
-                                        <button className="
-                                            flex flex-row items-center gap-1 px-2 py-1 rounded-full
-                                            bg-[#282828] text-white hover:bg-[#3F3F3F] transition text-sm w-full
-                                            border-none
-                                        ">
-                                            <Discount className="w-4 h-4" />
-                                            Discount Offer
-                                        </button>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span className='text-white text-sm font-semibold'>View Full Leaderboard</span>
-                                </div>
-                            </div>
-                            <div className='flex flex-col gap-8'>
-                                <Table>
-                                    <TableHeader >
-                                        <Th
-                                            className="flex items-center justify-center gap-2 hover:cursor-pointer"
-                                            onClick={handleFundedxSort}
-                                        >
-                                            RANK {fundedxSort === 'desc' ? <SortUp className="w-4 h-4" /> : <SortDown className="w-4 h-4" />}
-                                        </Th>
-                                        <Th>USERNAME</Th>
-                                        <Th>COUNTRY</Th>
-                                        <Th>PROFIT</Th>
-                                        <Th>BADGES</Th>
-                                    </TableHeader>
-                                    <TableBody>
-                                        {loading ? (
-                                            <TableRow>
-                                                <Td className="text-center py-8">
-                                                    <div className="flex items-center justify-center">
-                                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                                                        <span className="ml-2">Loading FundedX data...</span>
-                                                    </div>
-                                                </Td>
-                                            </TableRow>
-                                        ) : error ? (
-                                            <TableRow>
-                                                <Td className="text-center py-8 text-red-500">
-                                                    Error: {error}
-                                                </Td>
-                                            </TableRow>
-                                        ) : sortDataByProfit(fundedxData, fundedxSort)?.map((trader: any, index: number) => {
-                                            const FlagComponent = getCountryFlag(trader.country)
-                                            return (
-                                                <TableRow key={index}>
-                                                    <Td>{trader.rank}</Td>
-                                                    <Td>
-                                                        <div className="flex items-center gap-2">
-                                                            <img
-                                                                src="/avatar/user-default-dark.png"
-                                                                alt="top-trader"
-                                                                className="w-6 h-6 rounded-full"
-                                                            />
-                                                            <span className="font-semibold">{trader.username}</span>
-                                                            {trader.verified && <Check className="w-4 h-4" />}
-                                                        </div>
-                                                    </Td>
-                                                    <Td>
-                                                        <div className="flex items-center justify-center gap-2">
-                                                            {FlagComponent && <FlagComponent title={trader.country} className="w-4 h-4" />}
-                                                            <span className="text-white opacity-70">{trader.country}</span>
-                                                        </div>
-                                                    </Td>
-                                                    <Td className="flex justify-center">
-                                                        <div className="bg-[#275130] border-none rounded-md px-2 py-1 text-sm w-fit">{trader.pnl || `+$${trader.profit?.toLocaleString() || 0}`}</div>
-                                                    </Td>
-                                                    <Td>
-                                                        <div className="flex flex-wrap gap-2 justify-center">
-                                                            <Badge>🔥 Profit Streak</Badge>
-                                                            <Badge>🏆 Top Gun</Badge>
-                                                        </div>
-                                                    </Td>
-                                                </TableRow>
-                                            )
-                                        })}
-                                    </TableBody>
-                                </Table>
-                            </div>
-                        </div>
-                        <div className='flex flex-col gap-4'>
-                            <div className='flex justify-between items-center'>
-                                <div className='flex items-center gap-2'>
-                                    <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
-                                    <span className='text-white font-semibold'>FundingPips</span>
-                                    <div className="
-                                        p-[1px] rounded-full
-                                        border-none
-                                        bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4]
-                                    ">
-                                        <button className="
-                                            flex flex-row items-center gap-1 px-2 py-1 rounded-full
-                                            bg-[#282828] text-white hover:bg-[#3F3F3F] transition text-sm w-full
-                                            border-none
-                                        ">
-                                            <Discount className="w-4 h-4" />
-                                            Discount Offer
-                                        </button>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span className='text-white text-sm font-semibold'>View Full Leaderboard</span>
-                                </div>
-                            </div>
-                            <div className='flex flex-col gap-8'>
-                                <Table>
-                                    <TableHeader >
-                                        <Th
-                                            className="flex items-center justify-center gap-2 hover:cursor-pointer"
-                                            onClick={handleFundingpipsSort}
-                                        >
-                                            RANK {fundingpipsSort === 'desc' ? <SortUp className="w-4 h-4" /> : <SortDown className="w-4 h-4" />}
-                                        </Th>
-                                        <Th>USERNAME</Th>
-                                        <Th>COUNTRY</Th>
-                                        <Th>PROFIT</Th>
-                                        <Th>BADGES</Th>
-                                    </TableHeader>
-                                    <TableBody>
-                                        {loading ? (
-                                            <TableRow>
-                                                <Td className="text-center py-8">
-                                                    <div className="flex items-center justify-center">
-                                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                                                        <span className="ml-2">Loading FundingPips data...</span>
-                                                    </div>
-                                                </Td>
-                                            </TableRow>
-                                        ) : error ? (
-                                            <TableRow>
-                                                <Td className="text-center py-8 text-red-500">
-                                                    Error: {error}
-                                                </Td>
-                                            </TableRow>
-                                        ) : sortDataByProfit(fundingpipsData, fundingpipsSort)?.map((trader: any, index: number) => {
-                                            const FlagComponent = getCountryFlag(trader.country)
-                                            return (
-                                                <TableRow key={index}>
-                                                    <Td>{trader.rank}</Td>
-                                                    <Td>
-                                                        <div className="flex items-center gap-2">
-                                                            <img
-                                                                src="/avatar/user-default-dark.png"
-                                                                alt="top-trader"
-                                                                className="w-6 h-6 rounded-full"
-                                                            />
-                                                            <span className="font-semibold">{trader.username}</span>
-                                                            {trader.verified && <Check className="w-4 h-4" />}
-                                                        </div>
-                                                    </Td>
-                                                    <Td>
-                                                        <div className="flex items-center justify-center gap-2">
-                                                            {FlagComponent && <FlagComponent title={trader.country} className="w-4 h-4" />}
-                                                            <span className="text-white opacity-70">{trader.country}</span>
-                                                        </div>
-                                                    </Td>
-                                                    <Td className="flex justify-center">
-                                                        <div className="bg-[#275130] border-none rounded-md px-2 py-1 text-sm w-fit">{trader.pnl || `+$${trader.profit?.toLocaleString() || 0}`}</div>
-                                                    </Td>
-                                                    <Td>
-                                                        <div className="flex flex-wrap gap-2 justify-center">
-                                                            <Badge>🔥 Profit Streak</Badge>
-                                                            <Badge>🏆 Top Gun</Badge>
-                                                        </div>
-                                                    </Td>
-                                                </TableRow>
-                                            )
-                                        })}
-                                    </TableBody>
-                                </Table>
-                            </div>
-                        </div>
-                        <div className='flex flex-col gap-4'>
-                            <div className='flex justify-between items-center'>
-                                <div className='flex items-center gap-2'>
-                                    <img src="/images/top-trader/1.png" alt="top-trader" className='w-6 h-6 rounded-full' />
-                                    <span className='text-white font-semibold'>Breakoutprop</span>
-                                    <div className="
-                                        p-[1px] rounded-full
-                                        border-none
-                                        bg-gradient-to-b from-[#9CECFB] via-[#65C7F7] to-[#0052D4]
-                                    ">
-                                        <button className="
-                                            flex flex-row items-center gap-1 px-2 py-1 rounded-full
-                                            bg-[#282828] text-white hover:bg-[#3F3F3F] transition text-sm w-full
-                                            border-none
-                                        ">
-                                            <Discount className="w-4 h-4" />
-                                            Discount Offer
-                                        </button>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span className='text-white text-sm font-semibold'>View Full Leaderboard</span>
-                                </div>
-                            </div>
-                            <div className='flex flex-col gap-8'>
-                                <Table>
-                                    <TableHeader >
-                                        <Th
-                                            className="flex items-center justify-center gap-2 hover:cursor-pointer"
-                                            onClick={handleBreakoutpropSort}
-                                        >
-                                            RANK {breakoutpropSort === 'desc' ? <SortUp className="w-4 h-4" /> : <SortDown className="w-4 h-4" />}
-                                        </Th>
-                                        <Th>USERNAME</Th>
-                                        <Th>COUNTRY</Th>
-                                        <Th>PROFIT</Th>
-                                        <Th>BADGES</Th>
-                                    </TableHeader>
-                                    <TableBody>
-                                        {loading ? (
-                                            <TableRow>
-                                                <Td className="text-center py-8">
-                                                    <div className="flex items-center justify-center">
-                                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                                                        <span className="ml-2">Loading Breakoutprop One data...</span>
-                                                    </div>
-                                                </Td>
-                                            </TableRow>
-                                        ) : error ? (
-                                            <TableRow>
-                                                <Td className="text-center py-8 text-red-500">
-                                                    Error: {error}
-                                                </Td>
-                                            </TableRow>
-                                        ) : sortDataByProfit(breakoutpropData, breakoutpropSort)?.map((trader: any, index: number) => {
-                                            const FlagComponent = getCountryFlag(trader.country)
-                                            return (
-                                                <TableRow key={index}>
-                                                    <Td>{trader.rank}</Td>
-                                                    <Td>
-                                                        <div className="flex items-center gap-2">
-                                                            <img
-                                                                src="/avatar/user-default-dark.png"
-                                                                alt="top-trader"
-                                                                className="w-6 h-6 rounded-full"
-                                                            />
-                                                            <span className="font-semibold">{trader.username}</span>
-                                                            {trader.verified && <Check className="w-4 h-4" />}
-                                                        </div>
-                                                    </Td>
-                                                    <Td>
-                                                        <div className="flex items-center justify-center gap-2">
-                                                            {FlagComponent && <FlagComponent title={trader.country} className="w-4 h-4" />}
-                                                            <span className="text-white opacity-70">{trader.country}</span>
-                                                        </div>
-                                                    </Td>
-                                                    <Td className="flex justify-center">
-                                                        <div className="bg-[#275130] border-none rounded-md px-2 py-1 text-sm w-fit">{trader.pnl || `+$${trader.profit?.toLocaleString() || 0}`}</div>
-                                                    </Td>
-                                                    <Td>
-                                                        <div className="flex flex-wrap gap-2 justify-center">
-                                                            <Badge>🔥 Profit Streak</Badge>
-                                                            <Badge>🏆 Top Gun</Badge>
-                                                        </div>
-                                                    </Td>
-                                                </TableRow>
-                                            )
-                                        })}
-                                    </TableBody>
-                                </Table>
-                            </div>
-                        </div>
+                        <TopTraderTable
+                            firmName="FTMO"
+                            data={sortDataByProfit(ftmoData, ftmoSort)}
+                            loading={loading}
+                            error={error}
+                            sortDirection={ftmoSort}
+                            onSort={handleFtmoSort}
+                            targetProfit={150000}
+                            loadingLabel="Loading FTMO data..."
+                        />
+                        <TopTraderTable
+                            firmName="FundedX"
+                            data={sortDataByProfit(fundedxData, fundedxSort)}
+                            loading={loading}
+                            error={error}
+                            sortDirection={fundedxSort}
+                            onSort={handleFundedxSort}
+                            targetProfit={10000}
+                            loadingLabel="Loading FundedX data..."
+                        />
+                        <TopTraderTable
+                            firmName="FundingPips"
+                            data={sortDataByProfit(fundingpipsData, fundingpipsSort)}
+                            loading={loading}
+                            error={error}
+                            sortDirection={fundingpipsSort}
+                            onSort={handleFundingpipsSort}
+                            targetProfit={50000}
+                            loadingLabel="Loading FundingPips data..."
+                        />
+                        <TopTraderTable
+                            firmName="Breakoutprop"
+                            data={sortDataByProfit(breakoutpropData, breakoutpropSort)}
+                            loading={loading}
+                            error={error}
+                            sortDirection={breakoutpropSort}
+                            onSort={handleBreakoutpropSort}
+                            targetProfit={150000}
+                            loadingLabel="Loading Breakoutprop One data..."
+                        />
                     </div>
                 </div>
             </div>

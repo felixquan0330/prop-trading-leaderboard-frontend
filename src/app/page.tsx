@@ -13,7 +13,7 @@ export default function Home() {
             <Leaderboard />
             <TopTrader />
             <PropFirmReview />
-            <GOATClub />
+            {/* <GOATClub /> */}
             <StayConnected />
             <Footer />
         </div>
