@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fingerprintjs/fingerprintjs": "^4.6.2",
     "clsx": "^2.1.1",
     "country-flag-icons": "^1.5.19",
     "country-flags-svg": "^2.0.0-beta.1",
