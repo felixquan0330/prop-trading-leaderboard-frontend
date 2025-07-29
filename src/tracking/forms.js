@@ -32,7 +32,7 @@ export function setupFormTracking(forms, config, state) {
 }
 
 function trackFormSubmission(formType, formId, formData, config, state) {
-    const url = `${config.apiUrl}/form-submission`;
+    const url = `http://localhost:8000/api/v1/form-submission`;
     const data = {
         visit_id: state.visitId,
         session_id: state.sessionId,

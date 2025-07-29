@@ -276,7 +276,7 @@ export function initTracker(config) {
     }
 
     function trackPageVisit() {
-        const url = `${config.apiUrl}/track-visit`;
+        const url = `http://localhost:8000/api/v1/track-visit`;
         const data = {
             visit_id: state.visitId,
             website_id: config.websiteId,
@@ -304,7 +304,7 @@ export function initTracker(config) {
     }
 
     function sendUpdateVisit(isSync = false) {
-        const url = `${config.apiUrl}/update-visit`;
+        const url = `http://localhost:8000/api/v1/update-visit`;
         const data = {
             visit_id: state.visitId,
             company_id: config.companyId,
@@ -314,7 +314,7 @@ export function initTracker(config) {
     }
 
     function trackScriptLoad() {
-        const url = `${config.apiUrl}/track-script-load`;
+        const url = `http://localhost:8000/api/v1/track-script-load`;
         sendRequest(url, {
             website_id: config.websiteId,
             company_id: config.companyId,
