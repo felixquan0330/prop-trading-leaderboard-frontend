@@ -36,8 +36,8 @@ function trackFormSubmission(formType, formId, formData, config, state) {
     const data = {
         visit_id: state.visitId,
         session_id: state.sessionId,
-        website_id: config.websiteId,
-        company_id: config.companyId,
+        website_id: "1",
+        company_id: "1",
         form_type: formType,
         form_id: formId,
         form_data: formData,
